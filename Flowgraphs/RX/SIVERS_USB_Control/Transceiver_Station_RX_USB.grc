@@ -1,0 +1,1103 @@
+options:
+  parameters:
+    author: Niklas Beckmann, Berk Acikgoez, Aleksandar Ichkov, Aron Schott
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: iNETS - RWTH
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: Transceiver_Station_RX_USB
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Transceiver Station RX USB
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: bb_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: 35e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [808, 12.0]
+    rotation: 0
+    state: true
+- name: beam_id
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Choose Fixed TX Beam
+    label0: ''
+    label1: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    labels: '[" Omni beam", "Beam 1", "Beam 2", "Beam 3", "Beam 4", "Beam 5", "Beam
+      6", "Beam 7", "Beam 8", "Beam 9", "Beam 10", "Beam 11", "Beam 12", "Beam 13",
+      "Beam 14", "Beam 15", "Beam 16", "Beam 17", "Beam 18", "Beam 19", "Beam 20",
+      "Beam 21"]'
+    num_opts: '0'
+    option0: '0'
+    option1: '1'
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+      20, 21]'
+    orient: Qt.QVBoxLayout
+    type: real
+    value: '0'
+    widget: combo_box
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1272, 180.0]
+    rotation: 0
+    state: disabled
+- name: detector_threshold
+  id: variable
+  parameters:
+    comment: ''
+    value: '60'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [904, 12.0]
+    rotation: 0
+    state: true
+- name: evk_serial
+  id: variable
+  parameters:
+    comment: replace this with the serial number of your EVK device
+    value: '"SNSP210071"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1008, 76.0]
+    rotation: 0
+    state: true
+- name: evk_trx_freq
+  id: variable
+  parameters:
+    comment: ''
+    value: 27.44e9
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1128, 76.0]
+    rotation: 0
+    state: true
+- name: header_format
+  id: variable
+  parameters:
+    comment: ''
+    value: iNETS_PHYHeader.phy_header().formatter()
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [416, 12.0]
+    rotation: 0
+    state: enabled
+- name: init_rx_beam
+  id: variable
+  parameters:
+    comment: ''
+    value: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1256, 12.0]
+    rotation: 0
+    state: true
+- name: init_tx_beam
+  id: variable
+  parameters:
+    comment: ''
+    value: '11'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1152, 12.0]
+    rotation: 0
+    state: true
+- name: len_key
+  id: variable
+  parameters:
+    comment: ''
+    value: '"packet_len"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1040, 12.0]
+    rotation: 0
+    state: true
+- name: max_mtu_size
+  id: variable
+  parameters:
+    comment: ''
+    value: '800'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [304, 12.0]
+    rotation: 0
+    state: true
+- name: num_key
+  id: variable
+  parameters:
+    comment: ''
+    value: '"packet_num"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [304, 76.0]
+    rotation: 0
+    state: true
+- name: partner_sta_code
+  id: variable
+  parameters:
+    comment: ''
+    value: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [584, 76.0]
+    rotation: 0
+    state: true
+- name: rand_pad
+  id: variable
+  parameters:
+    comment: ''
+    value: '20'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [720, 12.0]
+    rotation: 0
+    state: true
+- name: scrambler_seed
+  id: variable
+  parameters:
+    comment: ''
+    value: '111'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [600, 12.0]
+    rotation: 0
+    state: true
+- name: sps
+  id: variable
+  parameters:
+    comment: ''
+    value: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [424, 76.0]
+    rotation: 0
+    state: true
+- name: sta_code
+  id: variable
+  parameters:
+    comment: ''
+    value: '2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [496, 76.0]
+    rotation: 0
+    state: true
+- name: sweeping
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Choose Beam Sweeping Type
+    label0: Fixed TX beam
+    label1: Full TX beam sweep
+    label2: ''
+    label3: ''
+    label4: ''
+    labels: '[]'
+    num_opts: '2'
+    option0: 'False'
+    option1: 'True'
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: raw
+    value: 'True'
+    widget: combo_box
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1272, 316.0]
+    rotation: 0
+    state: true
+- name: usrp_rx_address
+  id: variable
+  parameters:
+    comment: replace this with the IP address of your USRP
+    value: '"addr=192.168.20.2"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [712, 76.0]
+    rotation: 0
+    state: true
+- name: usrp_rx_subdev_spec
+  id: variable
+  parameters:
+    comment: ''
+    value: '"A:0"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [864, 76.0]
+    rotation: 0
+    state: true
+- name: epy_block_0
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
+      \ GRC will instantiate the first class it finds\nto get ports and parameters\
+      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
+      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
+      from gnuradio import gr\nimport pmt\nimport time\n\n\nclass blk(gr.sync_block):\
+      \  # other base classes are basic_block, decim_block, interp_block\n    \"\"\
+      \"Embedded Python Block example - a simple multiply const\"\"\"\n\n    def __init__(self):\
+      \  # only default arguments here\n        \"\"\"arguments to this function show\
+      \ up as parameters in GRC\"\"\"\n        gr.sync_block.__init__(\n         \
+      \   self,\n            name='GUI data handling',   # will show up in GRC\n \
+      \           in_sig=None,\n            out_sig=[np.short, np.short, np.single]\n\
+      \        )\n        # if an attribute with the same name as a parameter is found,\n\
+      \        # a callback is registered (properties work, too).\n        self.message_port_register_in(pmt.intern('message_in'))\n\
+      \        self.message_port_register_in(pmt.intern('snr_message_in'))\n\n   \
+      \     self.set_msg_handler(pmt.intern('message_in'), self.handle_msg)\n    \
+      \    self.set_msg_handler(pmt.intern('snr_message_in'), self.handle_snr_msg)\n\
+      \n        self.rx_beam_id = 0\n        self.tx_beam_id = 0\n        self.best_beam\
+      \ = 0\n        self.last_rssi = 0\n        self.last_preamble_snr = 0\n    \
+      \    self.preamble_rss = 0\n        self.mcs = 0\n\n        self.lastTime =\
+      \ time.time()\n\n    def work(self, input_items, output_items):\n        \"\"\
+      \"example: multiply with constant\"\"\"\n        output_items[0][:] = self.rx_beam_id\n\
+      \        output_items[1][:] = self.tx_beam_id\n        #output_items[2][:] =\
+      \ self.best_beam\n        #output_items[2][:] = self.last_rssi\n        output_items[2][:]\
+      \ = self.last_preamble_snr\n        #output_items[2][:] = self.preamble_rss\n\
+      \n        return len(output_items[0])\n\n    def handle_msg(self, msg):\n\n\
+      \        if pmt.dict_has_key(msg, pmt.string_to_symbol(\"rx_beam_id\")):\n \
+      \           r = pmt.dict_ref(msg, pmt.string_to_symbol(\"rx_beam_id\"), pmt.PMT_NIL)\n\
+      \            if pmt.to_float(r) < 22:\n                self.rx_beam_id = pmt.to_float(r)\n\
+      \        if pmt.dict_has_key(msg, pmt.string_to_symbol(\"tx_beam_id\")):\n \
+      \           r = pmt.dict_ref(msg, pmt.string_to_symbol(\"tx_beam_id\"), pmt.PMT_NIL)\n\
+      \            if pmt.to_float(r) < 22:\n                self.tx_beam_id = pmt.to_float(r)\n\
+      \        if pmt.dict_has_key(msg, pmt.string_to_symbol(\"best_beam\")):\n  \
+      \          r = pmt.dict_ref(msg, pmt.string_to_symbol(\"best_beam\"), pmt.PMT_NIL)\n\
+      \            self.best_beam = pmt.to_float(r)\n        if pmt.dict_has_key(msg,\
+      \ pmt.string_to_symbol(\"last_rssi\")):\n            r = pmt.dict_ref(msg, pmt.string_to_symbol(\"\
+      last_rssi\"), pmt.PMT_NIL)\n            self.last_rssi = pmt.to_float(r)\n \
+      \       #if pmt.dict_has_key(msg, pmt.string_to_symbol(\"last_preamble_snr\"\
+      )):\n        #    r = pmt.dict_ref(msg, pmt.string_to_symbol(\"last_preamble_snr\"\
+      ), pmt.PMT_NIL)\n        #    self.last_preamble_snr = pmt.to_float(r)\n   \
+      \     if pmt.dict_has_key(msg, pmt.string_to_symbol(\"preamble_rss\")):\n  \
+      \          r = pmt.dict_ref(msg, pmt.string_to_symbol(\"preamble_rss\"), pmt.PMT_NIL)\n\
+      \            self.preamble_rss = pmt.to_float(r)\n\n    def handle_snr_msg(self,\
+      \ msg):\n\n        meta = pmt.to_python(pmt.car(msg))\n\n        snr = meta[\"\
+      snr\"]\n        #print('SNR: ', snr, type(snr))\n\n        self.last_preamble_snr\
+      \ = snr\n\n\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    _io_cache: ('GUI data handling', 'blk', [], [('message_in', 'message', 1), ('snr_message_in',
+      'message', 1)], [('0', 'short', 1), ('1', 'short', 1), ('2', 'float', 1)], 'Embedded
+      Python Block example - a simple multiply const', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [320, 808.0]
+    rotation: 0
+    state: disabled
+- name: iNETS_BeamManager_beamsteering_protocol_0
+  id: iNETS_BeamManager_beamsteering_protocol
+  parameters:
+    affinity: ''
+    alias: ''
+    beam_interval: '0.03'
+    beamsteering_algorithm: '2'
+    comment: ''
+    custom_beambook_suffix: '"_iNETS"'
+    experimental_setup_comment: ''
+    fixed_beam: init_rx_beam
+    fixed_beam_backup_link_backup_beam_id: '21'
+    fixed_beam_backup_link_beam_switch_message_retrans_no: '1'
+    fixed_beam_backup_link_data_state_duration: '2.0'
+    fixed_beam_backup_link_default_beam_id: '11'
+    fixed_beam_backup_link_distance: '3.0'
+    fixed_beam_backup_link_report_state_duration: '1.0'
+    log_config_parent_dir: /home/inets/Workspace/GNURadio_logs/RX_USB/Beamsteering_Protocol_events_configs/
+    log_per_sector: 'False'
+    log_per_sector_parent_dir: /home/inets/Workspace/GNURadio_logs/RX_USB/Beamsteering_Protocol_persector/
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    retrain_RSSI_threshold: '15'
+    single_training_for_TX_and_RX: 'False'
+    start_training: 'True'
+    station_code: sta_code
+    station_type: '1'
+    sweeping: 'True'
+    timeout_PLS: '0.2'
+    timeout_PLS_timer_based: '0.035'
+    timeout_PLS_timer_based_receive_SSW_frames: '0.035'
+    timeout_RSSI_value_interval: '1.2'
+    timeout_SLS: '0.2'
+    timeout_SLS_timer_based: '0.24'
+    timeout_SLS_timer_based_receive_SSW_frames: '0.065'
+    timeout_history_search: '0.2'
+    timeout_history_search_receive_SSW_frames: '0.8'
+    timeout_iterative: '0.1'
+    timeout_iterative_search_timer_based_receive_SSW_frames: '0.035'
+    timeout_iterative_timer_based: '1.5'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [712, 156.0]
+    rotation: 0
+    state: true
+- name: iNETS_PacketizedLink_RX_PHY_logger_0
+  id: iNETS_PacketizedLink_RX_PHY_logger
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    log_file_parent_dir: /home/inets/Workspace/GNURadio_logs/RX_USB/RX_PHY_Logger_events/
+    log_per_sector: 'False'
+    log_per_sector_parent_dir: /home/inets/Workspace/GNURadio_logs/RX_USB/RX_PHY_Logger_perposition/
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mode: defined
+    simulation: 'False'
+    station_code: sta_code
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [136, 620.0]
+    rotation: 180
+    state: true
+- name: iNETS_PacketizedLink_stop_wait_arq_0
+  id: iNETS_PacketizedLink_stop_wait_arq
+  parameters:
+    ack_timeout: 90e-3
+    affinity: ''
+    alias: ''
+    comment: ''
+    conf_parent_dir: /home/inets/Workspace/GNURadio_logs/RX_USB/Stop_Wait_ARQ/
+    initial_TX_RF_gain: '17'
+    initial_rx_beam_index: init_rx_beam
+    initial_tx_beam_index: init_tx_beam
+    max_mtu_size: max_mtu_size
+    max_retries: '2'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    partner_station_code: partner_sta_code
+    send_only_when_trained: 'True'
+    station_code: sta_code
+    tx_mcs: '0'
+    tx_scrambler_seed: scrambler_seed
+    use_ack: 'True'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 468.0]
+    rotation: 180
+    state: true
+- name: iNETS_SIVERSControl_evk02001_init_rx_0
+  id: iNETS_SIVERSControl_evk02001_init_rx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    custom_beambook_suffix: '"_iNETS"'
+    do_lo_leakage_cal: 'False'
+    evkplatform_type: MB1
+    initial_RX_RF_gain: '238'
+    initial_RX_vga_1_2_gain: '115'
+    initial_TX_BF_gain: '153'
+    initial_TX_RF_gain: '17'
+    initial_rx_beam_index: init_rx_beam
+    initial_tx_beam_index: init_tx_beam
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    sleep_amount: '0'
+    trx_frequency: evk_trx_freq
+    unit_name: evk_serial
+    version_num: '202111231800'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [136, 356.0]
+    rotation: 180
+    state: true
+- name: import_0
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: import gnuradio
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 156.0]
+    rotation: 0
+    state: true
+- name: import_1
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: from gnuradio import digital
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 220.0]
+    rotation: 0
+    state: true
+- name: import_2
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: from gnuradio import iNETS_PHYHeader
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 284.0]
+    rotation: 0
+    state: true
+- name: import_3
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: import ieee802_11
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 348.0]
+    rotation: 0
+    state: true
+- name: network_socket_pdu_0
+  id: network_socket_pdu
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    host: localhost
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mtu: '100'
+    port: '52002'
+    tcp_no_delay: 'False'
+    type: UDP_SERVER
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [992, 356.0]
+    rotation: 0
+    state: true
+- name: phy_transceiver_rx_usb_0
+  id: phy_transceiver_rx_usb
+  parameters:
+    affinity: ''
+    alias: ''
+    baseband_derotation_volatility: '0.8'
+    bb_freq: bb_freq
+    comment: ''
+    detector_threshold: detector_threshold
+    max_mtu_size: max_mtu_size
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    rand_pad: rand_pad
+    samp_rate: samp_rate
+    sps: sps
+    subdev_spec_RX: usrp_rx_subdev_spec
+    usrp_rx_address: usrp_rx_address
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 732.0]
+    rotation: 0
+    state: true
+- name: qtgui_const_sink_x_0
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"red"'
+    color2: '"red"'
+    color3: '"red"'
+    color4: '"red"'
+    color5: '"red"'
+    color6: '"red"'
+    color7: '"red"'
+    color8: '"red"'
+    color9: '"red"'
+    comment: ''
+    grid: 'False'
+    gui_hint: ''
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'True'
+    marker1: '0'
+    marker10: '0'
+    marker2: '0'
+    marker3: '0'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: '"Payload Constellation after Carrier Sync"'
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '0'
+    style3: '0'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '2'
+    xmin: '-2'
+    ymax: '2'
+    ymin: '-2'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1272, 796.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_number_sink_0
+  id: qtgui_number_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    autoscale: 'False'
+    avg: '0'
+    color1: ("black", "black")
+    color10: ("black", "black")
+    color2: ("black", "black")
+    color3: ("black", "black")
+    color4: ("black", "black")
+    color5: ("black", "black")
+    color6: ("black", "black")
+    color7: ("black", "black")
+    color8: ("black", "black")
+    color9: ("black", "black")
+    comment: ''
+    factor1: '1'
+    factor10: '1'
+    factor2: '1'
+    factor3: '1'
+    factor4: '1'
+    factor5: '1'
+    factor6: '1'
+    factor7: '1'
+    factor8: '1'
+    factor9: '1'
+    graph_type: qtgui.NUM_GRAPH_NONE
+    gui_hint: 2,2,1,1
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    max: '1'
+    min: '-1'
+    name: '"SNR"'
+    nconnections: '1'
+    type: float
+    unit1: ''
+    unit10: ''
+    unit2: ''
+    unit3: ''
+    unit4: ''
+    unit5: ''
+    unit6: ''
+    unit7: ''
+    unit8: ''
+    unit9: ''
+    update_time: '0.10'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [568, 940.0]
+    rotation: 0
+    state: disabled
+- name: qtgui_number_sink_1
+  id: qtgui_number_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    autoscale: 'False'
+    avg: '0'
+    color1: ("black", "black")
+    color10: ("black", "black")
+    color2: ("black", "black")
+    color3: ("black", "black")
+    color4: ("black", "black")
+    color5: ("black", "black")
+    color6: ("black", "black")
+    color7: ("black", "black")
+    color8: ("black", "black")
+    color9: ("black", "black")
+    comment: ''
+    factor1: '1'
+    factor10: '1'
+    factor2: '1'
+    factor3: '1'
+    factor4: '1'
+    factor5: '1'
+    factor6: '1'
+    factor7: '1'
+    factor8: '1'
+    factor9: '1'
+    graph_type: qtgui.NUM_GRAPH_NONE
+    gui_hint: 2,1,1,1
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    max: '1'
+    min: '-1'
+    name: '"TX Beam ID"'
+    nconnections: '1'
+    type: short
+    unit1: ''
+    unit10: ''
+    unit2: ''
+    unit3: ''
+    unit4: ''
+    unit5: ''
+    unit6: ''
+    unit7: ''
+    unit8: ''
+    unit9: ''
+    update_time: '0.10'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [568, 828.0]
+    rotation: 0
+    state: disabled
+- name: qtgui_number_sink_2
+  id: qtgui_number_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    autoscale: 'False'
+    avg: '0'
+    color1: ("black", "black")
+    color10: ("black", "black")
+    color2: ("black", "black")
+    color3: ("black", "black")
+    color4: ("black", "black")
+    color5: ("black", "black")
+    color6: ("black", "black")
+    color7: ("black", "black")
+    color8: ("black", "black")
+    color9: ("black", "black")
+    comment: ''
+    factor1: '1'
+    factor10: '1'
+    factor2: '1'
+    factor3: '1'
+    factor4: '1'
+    factor5: '1'
+    factor6: '1'
+    factor7: '1'
+    factor8: '1'
+    factor9: '1'
+    graph_type: qtgui.NUM_GRAPH_NONE
+    gui_hint: 2,0,1,1
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    max: '1'
+    min: '-1'
+    name: '"RX beam ID"'
+    nconnections: '1'
+    type: short
+    unit1: ''
+    unit10: ''
+    unit2: ''
+    unit3: ''
+    unit4: ''
+    unit5: ''
+    unit6: ''
+    unit7: ''
+    unit8: ''
+    unit9: ''
+    update_time: '0.10'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [568, 716.0]
+    rotation: 0
+    state: disabled
+- name: qtgui_time_sink_x_1
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'True'
+    gui_hint: 6, 0, 2, 5
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"RX Correlation"'
+    nconnections: '1'
+    size: '16000'
+    srate: 1e6
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.04'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '100'
+    ymin: '-1'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1272, 892.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_2
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'False'
+    grid: 'False'
+    gui_hint: 4,0,2,5
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '"RX Signal"'
+    nconnections: '1'
+    size: '16000'
+    srate: 1e6
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.04'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '3'
+    ymin: '0'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1272, 676.0]
+    rotation: 0
+    state: true
+- name: samp_rate
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Sampling Rate
+    short_id: ''
+    type: intx
+    value: '2000000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [176, 12.0]
+    rotation: 0
+    state: true
+
+connections:
+- [epy_block_0, '0', qtgui_number_sink_2, '0']
+- [epy_block_0, '1', qtgui_number_sink_1, '0']
+- [epy_block_0, '2', qtgui_number_sink_0, '0']
+- [iNETS_BeamManager_beamsteering_protocol_0, gui_out, epy_block_0, message_in]
+- [iNETS_BeamManager_beamsteering_protocol_0, out, iNETS_PacketizedLink_stop_wait_arq_0,
+  beamforming_protocol_in]
+- [iNETS_PacketizedLink_stop_wait_arq_0, antenna_array_control_out, iNETS_SIVERSControl_evk02001_init_rx_0,
+  MAC_control_message_in]
+- [iNETS_PacketizedLink_stop_wait_arq_0, beamforming_protocol_out, iNETS_BeamManager_beamsteering_protocol_0,
+  in]
+- [iNETS_PacketizedLink_stop_wait_arq_0, rx_phy_logger_out, iNETS_PacketizedLink_RX_PHY_logger_0,
+  rx_logger_in]
+- [iNETS_PacketizedLink_stop_wait_arq_0, udp_socket_out, network_socket_pdu_0, pdus]
+- [network_socket_pdu_0, pdus, iNETS_PacketizedLink_stop_wait_arq_0, udp_socket_in]
+- [phy_transceiver_rx_usb_0, '0', qtgui_time_sink_x_2, '0']
+- [phy_transceiver_rx_usb_0, '1', qtgui_const_sink_x_0, '0']
+- [phy_transceiver_rx_usb_0, '2', qtgui_time_sink_x_1, '0']
+- [phy_transceiver_rx_usb_0, RX PHY out, iNETS_PacketizedLink_stop_wait_arq_0, phy_in]
+- [phy_transceiver_rx_usb_0, SNR out, iNETS_PacketizedLink_stop_wait_arq_0, snr_in]
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.6.0

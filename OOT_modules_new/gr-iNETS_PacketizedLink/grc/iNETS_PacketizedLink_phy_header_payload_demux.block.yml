@@ -1,0 +1,102 @@
+id: iNETS_PacketizedLink_phy_header_payload_demux
+label: PHY Header Payload Demux
+flags: [ python, cpp ]
+category: '[iNETS_PacketizedLink]'
+
+templates:
+    imports: from gnuradio import iNETS_PacketizedLink
+    make: |-
+        iNETS_PacketizedLink.phy_header_payload_demux(
+            ${header_len},
+            ${symbols_per_header_byte},
+            ${guard_interval},
+            ${length_tag_key},
+            ${mcs_tag_key},
+            ${trigger_tag_key},
+            ${output_symbols},
+            ${type.itemsize},
+            ${timing_tag_key},
+            ${samp_rate},
+            ${special_tags},
+            ${header_padding})
+
+parameters:
+-   id: header_len
+    label: Header Length (Symbols)
+    dtype: int
+-   id: header_padding
+    label: Header Padding (Uncertainty / Symbols)
+    dtype: int
+    default: 0
+-   id: symbols_per_header_byte
+    label: Symbols per header byte
+    dtype: int
+    hide: ${ 'none' if output_symbols else 'part' }
+-   id: guard_interval
+    label: Guard Interval (items)
+    dtype: int
+    default: 0
+-   id: length_tag_key
+    label: Length tag key
+    dtype: string
+    default: "packet_len"
+-   id: mcs_tag_key
+    label: MCS tag key
+    dtype: string
+    default: "mcs"
+-   id: trigger_tag_key
+    label: Trigger tag key
+    dtype: string
+    default: ""
+    hide: ${ ('none' if trigger_tag_key else 'part') }
+-   id: output_symbols
+    label: Output Format
+    dtype: enum
+    options: ['False', 'True']
+    option_labels: [Items, Symbols]
+    hide: ${ 'none' if output_symbols else 'part' }
+-   id: type
+    label: IO Type
+    dtype: enum
+    options: [complex, float, int, short, byte]
+    option_attributes:
+        itemsize: [gr.sizeof_gr_complex, gr.sizeof_float, gr.sizeof_int, gr.sizeof_short,
+            gr.sizeof_char]
+    hide: part
+-   id: timing_tag_key
+    label: Timing tag key
+    dtype: string
+    default: "rx_time"
+-   id: samp_rate
+    label: Sampling Rate
+    dtype: int
+    default: samp_rate
+-   id: special_tags
+    label: Special Tag Keys
+    dtype: raw
+    default: (,)
+
+inputs:
+-   label: in
+    domain: stream
+    dtype: ${ type }
+-   label: trigger
+    domain: stream
+    dtype: byte
+    optional: true
+-   domain: message
+    id: header_data
+
+outputs:
+-   label: out_hdr
+    domain: stream
+    dtype: ${ type }
+    vlen: 1 # '${ symbols_per_header_byte if output_symbols else 1 }'
+-   label: out_payload
+    domain: stream
+    dtype: ${ type }
+    vlen: 1 # '${ symbols_per_header_byte if output_symbols else 1 }'
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

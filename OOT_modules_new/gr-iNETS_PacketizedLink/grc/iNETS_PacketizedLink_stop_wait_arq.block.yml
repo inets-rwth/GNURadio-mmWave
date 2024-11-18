@@ -1,0 +1,130 @@
+id: iNETS_PacketizedLink_stop_wait_arq
+label: Stop and Wait ARQ
+category: '[iNETS_PacketizedLink]'
+
+templates:
+  imports: from gnuradio import iNETS_PacketizedLink
+  make: iNETS_PacketizedLink.stop_wait_arq(${use_ack}, ${ack_timeout}, ${max_retries}, ${max_mtu_size}, ${tx_mcs}, ${tx_scrambler_seed}, ${initial_tx_beam_index}, ${initial_rx_beam_index}, ${initial_TX_RF_gain}, ${send_only_when_trained}, ${station_code}, ${partner_station_code}, ${conf_parent_dir})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: use_ack
+  label: Send ACK
+  dtype: bool
+  options: ["True", "False"]
+  option_labels: ["Enabled", "Disabled"]
+- id: ack_timeout
+  label: ACK Timeout (in fractional seconds)
+  dtype: float
+  default: 90e-3
+- id: max_retries
+  label: Maximum Number of Retries
+  dtype: int
+  default: 2
+- id: max_mtu_size
+  label: Maximum MTU Size
+  dtype: int
+  default: 100
+- id: tx_mcs
+  label: MCS
+  dtype: int
+  default: 0
+- id: tx_scrambler_seed
+  label: Scrambler Seed
+  dtype: int
+  default: 111
+- id: initial_tx_beam_index
+  label: Initial TX Beam Index
+  dtype: int
+  default: 0
+- id: initial_rx_beam_index
+  label: Initial RX Beam Index
+  dtype: int
+  default: 0
+- id: initial_TX_RF_gain
+  label: Initial TX RF Gain
+  dtype: int
+  default: 0x00
+- id: send_only_when_trained
+  label: Send UDP Packets only when Antenna Array Trained
+  dtype: bool
+  options: ["True", "False"]
+  option_labels: ["Enabled", "Disabled"]
+- id: station_code
+  label: Station Code
+  dtype: int 
+  default: 1
+- id: partner_station_code
+  label: Partner Station Code
+  dtype: int
+  default: 2
+- id: conf_parent_dir
+  label: Parent Directory for Configuration Logs
+  dtype: string
+  default:
+  hide: part
+  
+#- id: ...
+#  label: ...
+#  dtype: ...
+
+#  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
+#  Keys include:
+#      * label (an identifier for the GUI)
+#      * domain (optional - stream or message. Default is stream)
+#      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#      * vlen (optional - data stream vector length. Default is 1)
+#      * optional (optional - set to 1 for optional inputs. Default is 0)
+inputs:
+- label: udp_socket_in
+  domain: message
+  optional: true
+- label: beamforming_protocol_in
+  domain: message
+  optional: true
+- label: phy_in
+  domain: message
+  optional: true
+- label: snr_in
+  domain: message
+  optional: 1
+
+#- label: ...
+#  domain: ...
+#  dtype: ...
+#  vlen: ...
+#  optional: ...
+
+outputs:
+- label: udp_socket_out
+  domain: message
+  optional: true
+- label: phy_out 
+  domain: message
+  optional: true
+- label: beamforming_protocol_out
+  domain: message
+  optional: true
+- label: antenna_array_control_out
+  domain: message
+  optional: true
+- label: rx_phy_logger_out
+  domain: message
+  optional: true
+  
+
+
+#- label: ...
+#  domain: ...
+#  dtype: ...
+#  vlen: ...
+#  optional: ...
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

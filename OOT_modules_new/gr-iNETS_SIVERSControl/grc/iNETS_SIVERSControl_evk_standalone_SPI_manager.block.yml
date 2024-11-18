@@ -1,0 +1,61 @@
+id: iNETS_SIVERSControl_evk_standalone_SPI_manager
+label: Standalone SPI Manager for EVK
+category: '[iNETS_SIVERSControl]'
+
+templates:
+  imports: from gnuradio import iNETS_SIVERSControl
+  make: iNETS_SIVERSControl.evk_standalone_SPI_manager(self.${usrp_obj}, ${antenna_array_model}, ${SPI_CLK_PIN}, ${SPI_SDI_PIN}, ${SPI_SDO_PIN}, ${SPI_CS_PIN}, ${SPI_CLK_DIV}, ${SPI_GPIO_PORT})
+
+parameters:
+- id: usrp_obj
+  label: ID of USRP block
+  dtype: id
+  default: uhd_usrp_source_0
+- id: antenna_array_model
+  label: Antenna Array Model
+  dtype: string
+  options: ["EVK02001", "EVK06002"]
+  option_labels: ["EVK02001", "EVK06002"]
+- id: SPI_CLK_PIN
+  label: SPI Clock pin
+  dtype: int
+  default: 0
+- id: SPI_SDI_PIN
+  label: SPI Serial Data In pin
+  dtype: int
+  default: 2
+- id: SPI_SDO_PIN
+  label: SPI Serial Data Out pin
+  dtype: int
+  default: 1
+- id: SPI_CS_PIN
+  label: SPI Chip Select pin
+  dtype: int
+  default: 3
+- id: SPI_CLK_DIV
+  label: SPI Clock Divider value
+  dtype: int
+  default: 24
+- id: SPI_GPIO_PORT
+  label: GPIO port to be used for SPI
+  dtype: string
+  options: ["GPIO0", "GPIO1"]
+  option_labels: ["GPIO0", "GPIO1"]
+
+inputs:
+- label: index_in
+  domain: message
+  dtype: int
+- label: beamsteering_protocol_msg
+  domain: message
+  dtype: int
+  optional: 1
+
+outputs:
+- label: index_out
+  domain: message
+  dtype: int
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

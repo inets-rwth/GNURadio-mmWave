@@ -1,0 +1,434 @@
+options:
+  parameters:
+    author: iNETS, Niklas, Berk
+    catch_exceptions: 'True'
+    category: '[iNETS_PacketizedLink]'
+    cmake_opt: ''
+    comment: ''
+    copyright: iNETS - RWTH
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: hb
+    hier_block_src_path: '.:'
+    id: phy_transceiver_rx_spi_60g
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: Tranceiver PHY Level - RX SPI 60G
+    window_size: (1000,1000)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: header_format
+  id: variable
+  parameters:
+    comment: ''
+    value: iNETS_PHYHeader.phy_header().formatter()
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 364.0]
+    rotation: 0
+    state: true
+- name: phy_CEF_constellation
+  id: variable
+  parameters:
+    comment: ''
+    value: gnuradio.digital.constellation_bpsk().base()
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 556.0]
+    rotation: 0
+    state: true
+- name: phy_STF_constellation
+  id: variable
+  parameters:
+    comment: ''
+    value: gnuradio.digital.constellation_bpsk().base()
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 492.0]
+    rotation: 0
+    state: true
+- name: phy_header_constellation
+  id: variable
+  parameters:
+    comment: ''
+    value: gnuradio.digital.constellation_bpsk().base()
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 428.0]
+    rotation: 0
+    state: true
+- name: scrambler_seed
+  id: variable
+  parameters:
+    comment: ''
+    value: '111'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1200, 12.0]
+    rotation: 0
+    state: true
+- name: RX_SC_PHY_SPI_60G_0
+  id: RX_SC_PHY_SPI_60G
+  parameters:
+    affinity: ''
+    alias: ''
+    bb_freq: bb_freq
+    comment: ''
+    header_format: header_format
+    max_mtu_size: max_mtu_size
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    mu: '0.6'
+    padding: rand_pad
+    phy_STF_constellation: phy_STF_constellation
+    phy_header_constellation: phy_header_constellation
+    samp_rate: samp_rate
+    scrambler_seed: scrambler_seed
+    sps: sps
+    threshold: detector_threshold
+    time_per_angle: time_per_angle
+    usrp_rx_address: usrp_rx_address
+    usrp_rx_subdev_spec: subdev_spec_RX
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [304, 220.0]
+    rotation: 0
+    state: true
+- name: baseband_derotation_volatility
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Baseband Derotation Volatility
+    short_id: ''
+    type: ''
+    value: '0.8'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1040, 12.0]
+    rotation: 0
+    state: true
+- name: bb_freq
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Carrier Frequency
+    short_id: ''
+    type: ''
+    value: 369.8e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [728, 12.0]
+    rotation: 0
+    state: true
+- name: detector_threshold
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Preamble Detection Threshold
+    short_id: ''
+    type: ''
+    value: '60'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [872, 12.0]
+    rotation: 0
+    state: true
+- name: import_0
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: import gnuradio
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 172.0]
+    rotation: 0
+    state: true
+- name: import_1
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: from gnuradio import digital
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 236.0]
+    rotation: 0
+    state: true
+- name: import_2
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: from gnuradio import iNETS_PHYHeader
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 300.0]
+    rotation: 0
+    state: true
+- name: max_mtu_size
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Max MTU Size
+    short_id: ''
+    type: ''
+    value: '800'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [600, 12.0]
+    rotation: 0
+    state: true
+- name: pad_sink_0
+  id: pad_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: RX Constellation before Carrier Sync
+    num_streams: '1'
+    optional: 'True'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [856, 188.0]
+    rotation: 0
+    state: enabled
+- name: pad_sink_3
+  id: pad_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: RX Constellation after Carrier Sync
+    num_streams: '1'
+    optional: 'True'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [856, 260.0]
+    rotation: 0
+    state: enabled
+- name: pad_sink_4
+  id: pad_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: SNR out
+    num_streams: '1'
+    optional: 'True'
+    type: message
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [856, 332.0]
+    rotation: 0
+    state: enabled
+- name: pad_sink_5
+  id: pad_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: RX PHY out
+    num_streams: '1'
+    optional: 'False'
+    type: message
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [856, 404.0]
+    rotation: 0
+    state: enabled
+- name: pad_sink_6
+  id: pad_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: RX Correlation
+    num_streams: '1'
+    optional: 'False'
+    type: complex
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [856, 476.0]
+    rotation: 0
+    state: enabled
+- name: rand_pad
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Random Padding
+    short_id: ''
+    type: ''
+    value: '50'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [456, 12.0]
+    rotation: 0
+    state: true
+- name: samp_rate
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Sample Rate
+    short_id: ''
+    type: intx
+    value: '2000000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [176, 12.0]
+    rotation: 0
+    state: true
+- name: sps
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Samples per Symbol
+    short_id: ''
+    type: intx
+    value: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [296, 12.0]
+    rotation: 0
+    state: true
+- name: subdev_spec_RX
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Subdevice Specification RX
+    short_id: ''
+    type: ''
+    value: '"A:0"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [352, 108.0]
+    rotation: 0
+    state: true
+- name: time_per_angle
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: Time Per Angle (s)
+    short_id: ''
+    type: eng_float
+    value: '1.7'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [520, 108.0]
+    rotation: 0
+    state: true
+- name: usrp_rx_address
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: USRP RX Address
+    short_id: ''
+    type: ''
+    value: '"addr=192.168.10.2"'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [200, 108.0]
+    rotation: 0
+    state: true
+
+connections:
+- [RX_SC_PHY_SPI_60G_0, '0', pad_sink_0, '0']
+- [RX_SC_PHY_SPI_60G_0, '1', pad_sink_3, '0']
+- [RX_SC_PHY_SPI_60G_0, '2', pad_sink_6, '0']
+- [RX_SC_PHY_SPI_60G_0, MAC Frame out, pad_sink_5, in]
+- [RX_SC_PHY_SPI_60G_0, SNR out, pad_sink_4, in]
+
+metadata:
+  file_format: 1
+  grc_version: v3.10.6.0-29-g0ef8fdea

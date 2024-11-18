@@ -1,0 +1,224 @@
+id: iNETS_BeamManager_beamsteering_protocol
+label: Beamsteering Protocol
+category: '[iNETS_BeamManager]'
+
+templates:
+  imports: from gnuradio import iNETS_BeamManager
+  make: iNETS_BeamManager.beamsteering_protocol(${beamsteering_algorithm}, ${custom_beambook_suffix}, ${station_type}, ${station_code}, ${single_training_for_TX_and_RX}, ${retrain_RSSI_threshold}, ${start_training}, ${timeout_SLS}, ${timeout_PLS}, ${timeout_iterative}, ${timeout_SLS_timer_based}, ${timeout_SLS_timer_based_receive_SSW_frames}, ${timeout_PLS_timer_based}, ${timeout_PLS_timer_based_receive_SSW_frames}, ${timeout_iterative_timer_based}, ${timeout_iterative_search_timer_based_receive_SSW_frames}, ${timeout_history_search}, ${timeout_history_search_receive_SSW_frames}, ${timeout_RSSI_value_interval}, ${experimental_setup_comment}, ${log_config_parent_dir}, ${log_per_sector}, ${log_per_sector_parent_dir}, ${fixed_beam_backup_link_default_beam_id}, ${fixed_beam_backup_link_backup_beam_id}, ${fixed_beam_backup_link_data_state_duration}, ${fixed_beam_backup_link_report_state_duration}, ${fixed_beam_backup_link_distance}, ${fixed_beam_backup_link_beam_switch_message_retrans_no}, ${fixed_beam}, ${beam_interval}, ${sweeping})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: beamsteering_algorithm
+  label: Algorithm
+  dtype: int
+  options: ["3", "5", "0", "2", "6", "8", "9", "11"]
+  option_labels: ["SLS", "SLS Timer Based", "PLS / Exhaustive Search", "PLS Timer Based", "Iterative Search", "Iterative Search Timer Based", "History Search", "Fixed Beam with Backup Link"]
+  category: General
+- id: custom_beambook_suffix
+  label: Custom Beambook Suffix
+  dtype: string
+  category: General
+- id: station_type
+  label: Station Type
+  dtype: int 
+  options: ["0", "1"]
+  option_labels: ["Initiator", "Responder"]
+  category: General
+- id: station_code
+  label: Station Code
+  dtype: int 
+  category: General 
+- id: single_training_for_TX_and_RX
+  label: Single Training for TX and RX
+  dtype: bool
+  options: ["True", "False"]
+  option_labels: ["Yes", "No"]
+  category: General
+- id: retrain_RSSI_threshold
+  label: Retrain RSSI threshold
+  dtype: float
+  category: General
+- id: start_training
+  label: Start Training
+  dtype: bool
+  options: ["True", "False"]
+  option_labels: ["Yes", "No"]
+  category: General
+- id: beam_interval
+  label: Time Between Consecutive Beams
+  dtype: float
+  category: General
+- id: timeout_SLS
+  label: Timeout SLS
+  dtype: float
+  default: 0.2
+  hide: part
+  category: SLS Settings
+- id: timeout_PLS
+  label: Timeout PLS
+  dtype: float
+  default: 0.2
+  hide: part
+  category: PLS Settings
+- id: timeout_iterative
+  label: Timeout Iterative Search
+  dtype: float
+  default: 0.1
+  hide: part
+  category: Iterative Search Settings
+- id: timeout_SLS_timer_based
+  label: Timeout SLS (TB)
+  dtype: float
+  default: 0.28
+  hide: part
+  category: SLS Timer Based Settings
+- id: timeout_SLS_timer_based_receive_SSW_frames
+  label: Timeout SLS Receive SSW Frames
+  dtype: float
+  default: 0.065
+  hide: part
+  category: SLS Timer Based Settings
+- id: timeout_PLS_timer_based
+  label: Timeout PLS (TB) 
+  dtype: float
+  default: 0.035
+  hide: part
+  category: PLS Timer Based Settings
+- id: timeout_PLS_timer_based_receive_SSW_frames
+  label: Timeout PLS Reveive SSW Frames
+  dtype: float
+  default: 0.065
+  hide: part
+  category: PLS Timer Based Settings
+- id: timeout_iterative_timer_based
+  label: Timeout Iterative Search (TB)
+  dtype: float
+  default: 1.5
+  hide: part
+  category: Iterative Search Timer Based Settings
+- id: timeout_iterative_search_timer_based_receive_SSW_frames
+  label: Timeout Iterative Search Receive SSW Frames
+  dtype: float
+  default: 0.035
+  hide: part
+  category: Iterative Search Timer Based Settings 
+- id: timeout_history_search
+  label: Timeout History Search
+  dtype: float
+  default: 0.2
+  hide: part
+  category: History Search Settings
+- id: timeout_history_search_receive_SSW_frames
+  label: Timeout History Search Receive SSW Frames
+  dtype: float
+  default: 0.8
+  hide: part
+  category: History Search Settings
+- id: timeout_RSSI_value_interval
+  label: Timeout RSSI Interval
+  dtype: float
+  category: General
+- id: sweeping
+  label: Sweeping
+  dtype: bool
+  options: ["True", "False"]
+  option_labels: ["True", "False"]
+  category: General
+- id: fixed_beam
+  label: Fixed Beam
+  dtype: int
+  category: General  
+- id: experimental_setup_comment
+  label: Experimental Setup Comment
+  dtype: string
+- id: log_config_parent_dir
+  label: Parent Directory for Event and Config Logs
+  dtype: string
+  category: Logging
+  hide: part
+- id: log_per_sector
+  label: Seperate Logs per Sector/Position
+  dtype: bool
+  category: Logging
+  options: ["True", "False"]
+  option_labels: ["Yes", "No"]
+- id: log_per_sector_parent_dir
+  label: Parent Directory for Logs per Sector
+  dtype: string
+  category: Logging
+  hide: part
+- id: fixed_beam_backup_link_default_beam_id
+  label: Default Beam ID
+  dtype: int
+  hide: part
+  category: Fixed Beam with Backup Link
+- id: fixed_beam_backup_link_backup_beam_id
+  label: Backup Beam ID
+  dtype: int
+  hide: part
+  category: Fixed Beam with Backup Link  
+- id: fixed_beam_backup_link_data_state_duration
+  label: Duration of the Data State (in seconds)
+  dtype: float
+  hide: part
+  category: Fixed Beam with Backup Link 
+- id: fixed_beam_backup_link_report_state_duration
+  label: Duration of the Report State (in seconds)
+  dtype: float
+  hide: part
+  category: Fixed Beam with Backup Link 
+- id: fixed_beam_backup_link_distance
+  label: Distance Between Initiator and Responder (in meters)
+  dtype: float
+  hide: part
+  category: Fixed Beam with Backup Link
+- id: fixed_beam_backup_link_beam_switch_message_retrans_no
+  label: Number of Retransmissions for the Beam Switch Message
+  dtype: int
+  hide: part
+  category: Fixed Beam with Backup Link
+#  category: General
+#  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
+#  Keys include:
+#      * label (an identifier for the GUI)
+#      * domain (optional - stream or message. Default is stream)
+#      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#      * vlen (optional - data stream vector length. Default is 1)
+#      * optional (optional - set to 1 for optional inputs. Default is 0)
+inputs:
+- label: in
+  domain: message
+  optional: 1
+- label: beam_id_message
+  domain: message
+  optional: 1
+- label: sweeping_message
+  domain: message
+  optional: 1
+- label: tt_msg
+  domain: message
+  optional: 1
+  hide: all
+- label: sensor_message
+  domain: message
+  optional: 1
+
+outputs:
+- label: out
+  domain: message
+  optional: 1
+- label: gui_out
+  domain: message
+  optional: 1
+- label: spi_manager_out
+  domain: message
+  optional: 1
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

@@ -1,0 +1,3 @@
+./include/gnuradio/iNETS_SIVERSControl/api.hUnable to find declaration. Matcher: [(decl type==namespace_t) and (name==gr)]
+./include/gnuradio/iNETS_SIVERSControl/evk_set_beams_TX_single_SPI.hError occurred while running CASTXML:  status:1
+./include/gnuradio/iNETS_SIVERSControl/api.hUnable to find declaration. Matcher: [(decl type==namespace_t) and (name==gr)]

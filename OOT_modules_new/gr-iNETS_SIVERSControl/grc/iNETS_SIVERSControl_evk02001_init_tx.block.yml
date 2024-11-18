@@ -1,0 +1,92 @@
+id: iNETS_SIVERSControl_evk02001_init_tx
+label: Initialize EVK02001 for TX
+category: '[iNETS_SIVERSControl]'
+
+templates:
+  imports: from gnuradio import iNETS_SIVERSControl
+  make: iNETS_SIVERSControl.evk02001_init_tx(${trx_frequency}, ${initial_tx_beam_index}, ${initial_rx_beam_index}, ${initial_TX_RF_gain}, ${initial_TX_BF_gain}, ${initial_RX_RF_gain}, ${initial_RX_vga_1_2_gain}, ${unit_name}, ${sleep_amount}, ${evkplatform_type}, ${version_num}, ${custom_beambook_suffix}, ${do_lo_leakage_cal})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: trx_frequency
+  label: TRX Frequency
+  dtype: float
+  default: 27.45e9
+- id: initial_tx_beam_index
+  label: Initial TX Beam Index
+  dtype: int
+  default: 0
+- id: initial_rx_beam_index
+  label: Initial RX Beam Index
+  dtype: int 
+  default: 0
+- id: initial_TX_RF_gain
+  label: Initial TX RF Gain
+  dtype: int
+  default: 0x00
+- id: initial_TX_BF_gain
+  label: Initial TX BF Gain
+  dtype: int
+  default: 0x99
+- id: initial_RX_RF_gain
+  label: Initial RX RF Gain
+  dtype: int
+  default: 0xee
+- id: initial_RX_vga_1_2_gain
+  label: Initial RX VGA 1/2 Gain
+  dtype: int 
+  default: 0x73
+- id: unit_name
+  label: Unit Name
+  dtype: string
+  default: SNSP210079
+- id: evkplatform_type
+  label: EVK Platform Type
+  dtype: string
+  default: MB1
+- id: version_num
+  label: Cruijff Version
+  dtype: string
+  default: 20211123_1800
+- id: custom_beambook_suffix
+  label: Custom Beambook Suffix
+  dtype: string
+  default:
+- id: do_lo_leakage_cal
+  label: TX LO Leakage Calibration
+  dtype: bool
+  default: False
+- id: sleep_amount
+  label: Sleep Amount Before SPI
+  dtype: int
+  default: 0
+#- id: ...
+#  label: ...
+#  dtype: ...
+
+#  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
+#  Keys include:
+#      * label (an identifier for the GUI)
+#      * domain (optional - stream or message. Default is stream)
+#      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#      * vlen (optional - data stream vector length. Default is 1)
+#      * optional (optional - set to 1 for optional inputs. Default is 0)
+inputs:
+- label: MAC_control_message_in
+  domain: message
+  optional: 1
+
+outputs:
+- label: out
+  domain: message
+  optional: 1
+  hide: all
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

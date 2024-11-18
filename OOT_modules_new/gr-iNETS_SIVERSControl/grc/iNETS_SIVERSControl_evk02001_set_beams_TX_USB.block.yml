@@ -1,0 +1,59 @@
+id: iNETS_SIVERSControl_evk02001_set_beams_TX_USB
+label: Set Beams over USB for EVK02001 - TX
+category: '[iNETS_SIVERSControl]'
+
+templates:
+  imports: from gnuradio import iNETS_SIVERSControl
+  make: iNETS_SIVERSControl.evk02001_set_beams_TX_USB(${evkplatform_type}, ${length_tag_name}, ${beam_tag_name}, ${initial_beam_index})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: evkplatform_type
+  label: Evkplatform Type
+  dtype: string
+  default: MB1
+- id: length_tag_name
+  label: Length Tag Name
+  dtype: string
+  default: "packet_len"
+- id: beam_tag_name
+  label: Beam Tag Name
+  dtype: string
+  default: "beam_id"
+- id: initial_beam_index
+  label: Initial Beam Index
+  dtype: int
+  default: 0
+#- id: ...
+#  label: ...
+#  dtype: ...
+
+#  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
+#  Keys include:
+#      * label (an identifier for the GUI)
+#      * domain (optional - stream or message. Default is stream)
+#      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#      * vlen (optional - data stream vector length. Default is 1)
+#      * optional (optional - set to 1 for optional inputs. Default is 0)
+inputs:
+- label: in
+#  domain: ...
+  dtype: complex
+#  vlen: ...
+#  optional: ...
+
+outputs:
+- label: out
+#  domain: ...
+  dtype: complex
+#  vlen: ...
+#  optional: ...
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

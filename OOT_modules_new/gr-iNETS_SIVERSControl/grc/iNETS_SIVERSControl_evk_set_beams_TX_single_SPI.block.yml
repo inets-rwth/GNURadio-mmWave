@@ -1,0 +1,93 @@
+id: iNETS_SIVERSControl_evk_set_beams_TX_single_SPI
+label: Set Beams over SPI for EVK - Single-Band TX
+category: '[iNETS_SIVERSControl]'
+
+templates:
+  imports: from gnuradio import iNETS_SIVERSControl
+  make: iNETS_SIVERSControl.evk_set_beams_TX_single_SPI(self.${usrp_obj}, ${length_tag_name}, 
+                             ${beam_tag_name}, ${initial_beam_index},
+                             ${antenna_array_model},
+                             ${SPI_CLK_PIN}, ${SPI_SDI_PIN},
+                             ${SPI_SDO_PIN}, ${SPI_CS_PIN},
+                             ${SPI_CLK_DIV}, ${SPI_GPIO_PORT},
+                             ${fixed_beam_m})
+
+parameters:
+- id: usrp_obj
+  label: ID of USRP block
+  dtype: id
+  default: uhd_usrp_sink_0
+  
+- id: length_tag_name
+  label: Length Tag Name
+  dtype: string
+  default: "packet_len"
+
+- id: beam_tag_name
+  label: Beam Tag Name
+  dtype: string
+  default: "tx_beam_id"
+  
+- id: initial_beam_index
+  label: Initial Beam Index
+  dtype: int
+  default: 0
+  
+- id: fixed_beam_m
+  label: Fixed Beam Mode
+  dtype: bool
+  options: ["True", "False"]
+  option_labels: ["True", "False"]
+
+- id: antenna_array_model
+  label: Antenna Array Model
+  dtype: string
+  options: ["EVK02001", "EVK06002"]
+  option_labels: ["EVK02001", "EVK06002"]
+  
+- id: SPI_CLK_PIN
+  label: SPI Clock pin
+  dtype: int
+  default: 0
+  
+- id: SPI_SDI_PIN
+  label: SPI Serial Data In pin
+  dtype: int
+  default: 2
+  
+- id: SPI_SDO_PIN
+  label: SPI Serial Data Out pin
+  dtype: int
+  default: 1
+  
+- id: SPI_CS_PIN
+  label: SPI Chip Select pin
+  dtype: int
+  default: 3
+  
+- id: SPI_CLK_DIV
+  label: SPI Clock Divider value
+  dtype: int
+  default: 24
+  
+- id: SPI_GPIO_PORT
+  label: SPI GPIO port to be used
+  dtype: string
+  options: ["GPIO0", "GPIO1"]
+  option_labels: ["GPIO0", "GPIO1"]
+
+inputs:
+- label: in
+  domain: complex
+- label: beamsteering_protocol_msg
+  domain: message
+  dtype: int
+  optional: 1
+
+outputs:
+- label: out
+  domain: complex
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

@@ -1,0 +1,174 @@
+2024-11-18 17:03:25,692 DEBUG: None
+2024-11-18 17:03:25,692 DEBUG: **** New session started on Mon Nov 18 17:03:25 2024
+2024-11-18 17:03:25,692 INFO :   EVK SW Version 20211123_1800
+2024-11-18 17:03:27,814 INFO :   EVK SW Version 20211123_1800
+2024-11-18 17:03:28,228 INFO :   [1mrfm_type: BFM02003
+2024-11-18 17:03:28,229 INFO :   [1mChip type Cruijff A R2.0 detected.
+2024-11-18 17:03:28,229 INFO :   [1mchip_type: Cruijff A R2.0
+2024-11-18 17:03:28,237 INFO :     Digital frequency: 184.32 MHz (dig_tune=0, divR=1, divN=3, ref freq=122.88 MHz)
+2024-11-18 17:03:28,238 INFO :   Checking for EEPROM
+2024-11-18 17:03:28,239 INFO :   EEPROM detected
+2024-11-18 17:03:28,703 INFO :   Chip present (chip_id = 0x02521910).
+2024-11-18 17:03:28,777 INFO :   RX Reset
+2024-11-18 17:03:28,803 INFO :   TX Reset
+2024-11-18 17:03:28,939 INFO :   Chip reset.
+2024-11-18 17:03:28,943 INFO :   REF init
+2024-11-18 17:03:28,951 INFO :     Reference frequency: 122.88 MHz
+2024-11-18 17:03:28,951 INFO :   REF init done
+2024-11-18 17:03:28,971 INFO :   Chip PLL re-init.
+2024-11-18 17:03:29,425 INFO :   TX Initialised
+2024-11-18 17:03:29,425 INFO :   Loading beambook
+2024-11-18 17:03:29,425 WARNING: [1m[33mMultiple compatible beambooks found
+2024-11-18 17:03:29,425 WARNING: [1m[33mSelecting first beambook
+2024-11-18 17:03:29,425 INFO : Selected beambook for frequency 27500 MHz
+2024-11-18 17:03:29,467 INFO :   TX Setup completed (without DCO calibration)
+2024-11-18 17:03:29,505 INFO :   TX disabled
+2024-11-18 17:03:29,509 INFO :   RX disabled
+2024-11-18 17:03:29,545 INFO :   RX Initialised
+2024-11-18 17:03:29,569 INFO :   RX enabled
+2024-11-18 17:03:29,735 INFO :     rx_bb_i_dco : 0x000 (0x0,0x0,0x00)
+2024-11-18 17:03:29,735 INFO :     rx_bb_q_dco : 0x000 (0x0,0x0,0x00)
+2024-11-18 17:03:29,735 INFO :     V_i_diff    : -12.78 mV
+2024-11-18 17:03:29,735 INFO :     V_q_diff    : -20.58 mV
+2024-11-18 17:03:29,735 INFO :     V_i_com     : 0.906 V
+2024-11-18 17:03:29,735 INFO :     V_q_com     : 0.876 V
+2024-11-18 17:03:29,735 INFO : Rx DCO DRV status before calibration start:
+2024-11-18 17:03:29,899 INFO :   rx_bb_drv_i_dco : 0x000 (0x0,0x00)
+2024-11-18 17:03:29,899 INFO :   rx_bb_drv_q_dco : 0x000 (0x0,0x00)
+2024-11-18 17:03:29,899 INFO :   V_i_diff        : -12.47 mV
+2024-11-18 17:03:29,899 INFO :   V_q_diff        : -20.26 mV
+2024-11-18 17:03:29,899 INFO :   V_i_com         : 1.484 V
+2024-11-18 17:03:29,899 INFO :   V_q_com         : 1.430 V
+2024-11-18 17:03:29,931 INFO : Change Control settings:
+2024-11-18 17:03:29,933 INFO :   trx_ctrl        : 0x01     => 0x00
+2024-11-18 17:03:29,935 INFO :   rx_dco_en       : 0x03     => 0x03
+2024-11-18 17:03:29,937 INFO :   trx_rx_on       : 0x1f0000 => 0x1a0000
+2024-11-18 17:03:29,939 INFO :   trx_rx_off      : 0x2d2e2f => 0x1a0000
+2024-11-18 17:03:29,939 INFO : Rx DCO DRV status after control register change:
+2024-11-18 17:03:30,103 INFO :   rx_bb_drv_i_dco : 0x000 (0x0,0x00)
+2024-11-18 17:03:30,103 INFO :   rx_bb_drv_q_dco : 0x000 (0x0,0x00)
+2024-11-18 17:03:30,103 INFO :   V_i_diff        : -12.47 mV
+2024-11-18 17:03:30,103 INFO :   V_q_diff        : -20.26 mV
+2024-11-18 17:03:30,103 INFO :   V_i_com         : 1.484 V
+2024-11-18 17:03:30,103 INFO :   V_q_com         : 1.429 V
+2024-11-18 17:03:30,115 INFO : Change Rx Gain settings:
+2024-11-18 17:03:30,117 INFO :   Rx BFRF gain    : 0x00 => 0x00
+2024-11-18 17:03:30,119 INFO :   Rx BB1 gain     : 0x00 => 0x00
+2024-11-18 17:03:30,121 INFO :   Rx BB2 gain     : 0x00 => 0x00
+2024-11-18 17:03:30,123 INFO :   Rx BB3 gain     : 0x00 => 0x00
+2024-11-18 17:03:30,125 INFO :   Rx LNA enable : 0x00 => 0x00
+2024-11-18 17:03:30,125 INFO : Rx DCO DRV status before calibration:
+2024-11-18 17:03:30,289 INFO :   rx_bb_drv_i_dco : 0x000 (0x0,0x00)
+2024-11-18 17:03:30,289 INFO :   rx_bb_drv_q_dco : 0x000 (0x0,0x00)
+2024-11-18 17:03:30,289 INFO :   V_i_diff        : -12.47 mV
+2024-11-18 17:03:30,289 INFO :   V_q_diff        : -20.26 mV
+2024-11-18 17:03:30,289 INFO :   V_i_com         : 1.500 V
+2024-11-18 17:03:30,289 INFO :   V_q_com         : 1.444 V
+2024-11-18 17:03:31,585 WARNING:   [1m[33mRX DRV DCO calibration: No zero DCO setting found on I channel!
+2024-11-18 17:03:31,585 WARNING:   [1m[33mRX DRV DCO calibration: Selecting best possible setting.
+2024-11-18 17:03:32,883 WARNING:   [1m[33mRX DRV DCO calibration: No zero DCO setting found on Q channel!
+2024-11-18 17:03:32,883 WARNING:   [1m[33mRX DRV DCO calibration: Selecting best possible setting.
+2024-11-18 17:03:32,885 INFO : Rx DCO DRV status after calibration:
+2024-11-18 17:03:33,049 INFO :   rx_bb_drv_i_dco : 0x000 (0x0,0x00)
+2024-11-18 17:03:33,049 INFO :   rx_bb_drv_q_dco : 0x000 (0x0,0x00)
+2024-11-18 17:03:33,049 INFO :   V_i_diff        : -12.47 mV
+2024-11-18 17:03:33,049 INFO :   V_q_diff        : -20.26 mV
+2024-11-18 17:03:33,049 INFO :   V_i_com         : 1.542 V
+2024-11-18 17:03:33,049 INFO :   V_q_com         : 1.485 V
+2024-11-18 17:03:33,049 INFO : Restoring Rx Gain settings:
+2024-11-18 17:03:33,051 INFO :   Rx BFRF gain    : 0x00 => 0x00
+2024-11-18 17:03:33,053 INFO :   Rx BB1 gain     : 0x00 => 0x00
+2024-11-18 17:03:33,055 INFO :   Rx BB2 gain     : 0x00 => 0x00
+2024-11-18 17:03:33,057 INFO :   Rx BB3 gain     : 0x00 => 0x00
+2024-11-18 17:03:33,059 INFO :   Rx LNA enable : 0x00 => 0x00
+2024-11-18 17:03:33,069 INFO : Restoring control settings:
+2024-11-18 17:03:33,071 INFO :   trx_ctrl        : 0x00     => 0x01
+2024-11-18 17:03:33,073 INFO :   rx_dco_en       : 0x03     => 0x03
+2024-11-18 17:03:33,075 INFO :   trx_rx_on       : 0x1a0000 => 0x1f0000
+2024-11-18 17:03:33,077 INFO :   trx_rx_off      : 0x1a0000 => 0x2d2e2f
+2024-11-18 17:03:33,089 INFO : Rx DCO DRV status after register restore:
+2024-11-18 17:03:33,253 INFO :   rx_bb_drv_i_dco : 0x000 (0x0,0x00)
+2024-11-18 17:03:33,253 INFO :   rx_bb_drv_q_dco : 0x000 (0x0,0x00)
+2024-11-18 17:03:33,253 INFO :   V_i_diff        : -13.09 mV
+2024-11-18 17:03:33,253 INFO :   V_q_diff        : -20.58 mV
+2024-11-18 17:03:33,253 INFO :   V_i_com         : 1.491 V
+2024-11-18 17:03:33,253 INFO :   V_q_com         : 1.437 V
+2024-11-18 17:03:33,253 INFO :   Rx DCO status before calibration start:
+2024-11-18 17:03:33,419 INFO :     rx_bb_i_dco : 0x000 (0x0,0x0,0x00)
+2024-11-18 17:03:33,419 INFO :     rx_bb_q_dco : 0x000 (0x0,0x0,0x00)
+2024-11-18 17:03:33,419 INFO :     V_i_diff    : -12.78 mV
+2024-11-18 17:03:33,419 INFO :     V_q_diff    : -20.26 mV
+2024-11-18 17:03:33,419 INFO :     V_i_com     : 1.533 V
+2024-11-18 17:03:33,419 INFO :     V_q_com     : 1.478 V
+2024-11-18 17:03:33,445 INFO :   Change Control settings:
+2024-11-18 17:03:33,447 INFO :     trx_ctrl    : 0x01     => 0x01
+2024-11-18 17:03:33,449 INFO :     rx_dco_en   : 0x03     => 0x03
+2024-11-18 17:03:33,451 INFO :     trx_rx_on   : 0x1c0000 => 0x1c0000
+2024-11-18 17:03:33,453 INFO :     trx_rx_off  : 0x2d2c2d => 0x2d2c2d
+2024-11-18 17:03:33,455 INFO :   Rx LNA enable : 0x00 => 0x00
+2024-11-18 17:03:33,455 INFO :   Rx DCO status after control register change:
+2024-11-18 17:03:33,621 INFO :     rx_bb_i_dco : 0x000 (0x0,0x0,0x00)
+2024-11-18 17:03:33,621 INFO :     rx_bb_q_dco : 0x000 (0x0,0x0,0x00)
+2024-11-18 17:03:33,621 INFO :     V_i_diff    : -12.16 mV
+2024-11-18 17:03:33,621 INFO :     V_q_diff    : -20.26 mV
+2024-11-18 17:03:33,621 INFO :     V_i_com     : 1.491 V
+2024-11-18 17:03:33,621 INFO :     V_q_com     : 1.436 V
+2024-11-18 17:03:33,623 INFO :   Change Rx Gain settings:
+2024-11-18 17:03:33,625 INFO :     Rx BFRF gain: 0x00 => 0x00
+2024-11-18 17:03:33,627 INFO :     Rx BB1 gain : 0x00 => 0xdf
+2024-11-18 17:03:33,629 INFO :     Rx BB2 gain : 0x00 => 0x00
+2024-11-18 17:03:33,631 INFO :     Rx BB3 gain : 0x00 => 0x00
+2024-11-18 17:03:33,631 INFO :   Rx DCO status after Rx gain change:
+2024-11-18 17:03:33,799 INFO :     rx_bb_i_dco : 0x000 (0x0,0x0,0x00)
+2024-11-18 17:03:33,799 INFO :     rx_bb_q_dco : 0x000 (0x0,0x0,0x00)
+2024-11-18 17:03:33,799 INFO :     V_i_diff    : -12.16 mV
+2024-11-18 17:03:33,799 INFO :     V_q_diff    : -20.58 mV
+2024-11-18 17:03:33,799 INFO :     V_i_com     : 1.513 V
+2024-11-18 17:03:33,799 INFO :     V_q_com     : 1.457 V
+2024-11-18 17:03:33,799 INFO :   Change Rx beam:
+2024-11-18 17:03:33,801 INFO :     Rx beam     : 0x20 => 0x20
+2024-11-18 17:03:33,801 INFO :   Rx DCO status after Rx beam change:
+2024-11-18 17:03:33,967 INFO :     rx_bb_i_dco : 0x000 (0x0,0x0,0x00)
+2024-11-18 17:03:33,967 INFO :     rx_bb_q_dco : 0x000 (0x0,0x0,0x00)
+2024-11-18 17:03:33,967 INFO :     V_i_diff    : -12.78 mV
+2024-11-18 17:03:33,967 INFO :     V_q_diff    : -20.26 mV
+2024-11-18 17:03:33,967 INFO :     V_i_com     : 1.526 V
+2024-11-18 17:03:33,967 INFO :     V_q_com     : 1.469 V
+2024-11-18 17:03:33,967 INFO :   Rx DCO status before calibration:
+2024-11-18 17:03:34,133 INFO :     rx_bb_i_dco : 0x000 (0x0,0x0,0x00)
+2024-11-18 17:03:34,133 INFO :     rx_bb_q_dco : 0x000 (0x0,0x0,0x00)
+2024-11-18 17:03:34,133 INFO :     V_i_diff    : -12.78 mV
+2024-11-18 17:03:34,133 INFO :     V_q_diff    : -19.95 mV
+2024-11-18 17:03:34,133 INFO :     V_i_com     : 1.533 V
+2024-11-18 17:03:34,133 INFO :     V_q_com     : 1.478 V
+2024-11-18 17:03:38,021 INFO :   RX DCO calibration failed!
+2024-11-18 17:03:41,911 INFO :   RX DCO calibration failed!
+2024-11-18 17:03:41,911 INFO :   Rx DCO status after calibration:
+2024-11-18 17:03:42,077 INFO :     rx_bb_i_dco : 0x000 (0x0,0x0,0x00)
+2024-11-18 17:03:42,077 INFO :     rx_bb_q_dco : 0x000 (0x0,0x0,0x00)
+2024-11-18 17:03:42,077 INFO :     V_i_diff    : -12.47 mV
+2024-11-18 17:03:42,077 INFO :     V_q_diff    : -20.58 mV
+2024-11-18 17:03:42,077 INFO :     V_i_com     : 1.546 V
+2024-11-18 17:03:42,077 INFO :     V_q_com     : 1.490 V
+2024-11-18 17:03:42,077 INFO :   Restore Rx beam:
+2024-11-18 17:03:42,079 INFO :     Rx beam     : 0x20 => 0x20
+2024-11-18 17:03:42,087 INFO :   Restoring Rx Gain settings:
+2024-11-18 17:03:42,089 INFO :     Rx BFRF gain: 0x00 => 0x00
+2024-11-18 17:03:42,091 INFO :     Rx BB1 gain : 0x00 => 0x00
+2024-11-18 17:03:42,093 INFO :     Rx BB2 gain : 0x07 => 0x00
+2024-11-18 17:03:42,095 INFO :     Rx BB3 gain : 0x00 => 0x00
+2024-11-18 17:03:42,097 INFO :   Rx LNA enable : 0x00 => 0x00
+2024-11-18 17:03:42,107 INFO :   Restoring control settings:
+2024-11-18 17:03:42,109 INFO :     trx_ctrl    : 0x01     => 0x01
+2024-11-18 17:03:42,111 INFO :     trx_rx_on   : 0x1c0000 => 0x1c0000
+2024-11-18 17:03:42,113 INFO :     trx_rx_off  : 0x2d2c2d => 0x2d2c2d
+2024-11-18 17:03:42,119 INFO :   Rx DCO status after register restore:
+2024-11-18 17:03:42,285 INFO :     rx_bb_i_dco : 0x216b (0x2,0x1,0x6b)
+2024-11-18 17:03:42,285 INFO :     rx_bb_q_dco : 0x3014 (0x3,0x0,0x14)
+2024-11-18 17:03:42,285 INFO :     V_i_diff    : -12.78 mV
+2024-11-18 17:03:42,285 INFO :     V_q_diff    : -20.89 mV
+2024-11-18 17:03:42,285 INFO :     V_i_com     : 1.486 V
+2024-11-18 17:03:42,285 INFO :     V_q_com     : 1.431 V
+2024-11-18 17:03:58,496 INFO :   RX disabled
+2024-11-18 17:03:58,554 INFO :   TX enabled
+2024-11-18 17:03:58,703 INFO :   Chip disconnected (chip_id = 0x00000000)!

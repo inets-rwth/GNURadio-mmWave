@@ -1,0 +1,73 @@
+id: iNETS_PacketizedLink_RX_PHY_logger
+label: RX PHY Logger
+category: '[iNETS_PacketizedLink]'
+
+templates:
+  imports: from gnuradio import iNETS_PacketizedLink
+  make: iNETS_PacketizedLink.RX_PHY_logger(${station_code}, ${mode}, ${log_file_parent_dir}, ${log_per_sector}, ${log_per_sector_parent_dir}, ${simulation})
+
+#  Make one 'parameters' list entry for every parameter you want settable from the GUI.
+#     Keys include:
+#     * id (makes the value accessible as keyname, e.g. in the make entry)
+#     * label (label shown in the GUI)
+#     * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#     * default
+parameters:
+- id: station_code
+  label: Station Code
+  dtype: int
+  default: 1
+- id: mode
+  label: Message Mode
+  dtype: string
+  options: [defined, random]
+  option_labels: ["Defined Payload", "Random Payload"]
+- id: simulation
+  dtype: bool
+  options: ["True", "False"]
+  option_labels: ["On", "Off"]
+- id: log_file_parent_dir
+  label: Parent Directory for Event Logs
+  dtype: string
+  hide: part
+- id: log_per_sector
+  label: Seperate Logs per Sector/Position
+  dtype: bool
+  options: ["True", "False"]
+  option_labels: ["Yes", "No"]
+- id: log_per_sector_parent_dir
+  label: Parent Directory for Per Position Logs
+  dtype: string
+  hide: part
+
+#  Make one 'inputs' list entry per input and one 'outputs' list entry per output.
+#  Keys include:
+#      * label (an identifier for the GUI)
+#      * domain (optional - stream or message. Default is stream)
+#      * dtype (e.g. int, float, complex, byte, short, xxx_vector, ...)
+#      * vlen (optional - data stream vector length. Default is 1)
+#      * optional (optional - set to 1 for optional inputs. Default is 0)
+inputs:
+- label: rx_logger_in
+  domain: message
+  optional: 1
+- label: tt_msg
+  domain: message
+  optional: 1
+  hide: all
+#  dtype: ...
+#  vlen: ...
+#  optional: ...
+
+outputs:
+- label: no_output
+  domain: message
+  optional: 1
+  hide: all
+#  dtype: ...
+#  vlen: ...
+#  optional: ...
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

@@ -1,0 +1,32 @@
+find_package(PkgConfig)
+
+PKG_CHECK_MODULES(PC_GR_INETS_PHYHEADER gnuradio-iNETS_PHYHeader)
+
+FIND_PATH(
+    GR_INETS_PHYHEADER_INCLUDE_DIRS
+    NAMES gnuradio/iNETS_PHYHeader/api.h
+    HINTS $ENV{INETS_PHYHEADER_DIR}/include
+        ${PC_INETS_PHYHEADER_INCLUDEDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/include
+          /usr/local/include
+          /usr/include
+)
+
+FIND_LIBRARY(
+    GR_INETS_PHYHEADER_LIBRARIES
+    NAMES gnuradio-iNETS_PHYHeader
+    HINTS $ENV{INETS_PHYHEADER_DIR}/lib
+        ${PC_INETS_PHYHEADER_LIBDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/lib
+          ${CMAKE_INSTALL_PREFIX}/lib64
+          /usr/local/lib
+          /usr/local/lib64
+          /usr/lib
+          /usr/lib64
+          )
+
+include("${CMAKE_CURRENT_LIST_DIR}/gnuradio-iNETS_PHYHeaderTarget.cmake")
+
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(GR_INETS_PHYHEADER DEFAULT_MSG GR_INETS_PHYHEADER_LIBRARIES GR_INETS_PHYHEADER_INCLUDE_DIRS)
+MARK_AS_ADVANCED(GR_INETS_PHYHEADER_LIBRARIES GR_INETS_PHYHEADER_INCLUDE_DIRS)
