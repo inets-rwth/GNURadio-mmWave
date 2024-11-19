@@ -12,7 +12,8 @@ Installation
 
 - The setup has been tested on Ubuntu OS (both 20.04 LTS as well as MATE distribution).
 - Make sure that you have Python 3.8 installed on your system.
-- Install GNURadio 3.10 from source. You can follow the official guide from GNURadio provided here: https://wiki.gnuradio.org/index.php?title=LinuxInstall#For_GNU_Radio_3.10,_3.9,_and_Main_Branch. Note that our framework is developed for operation using USRP X410, so you need to install UHD 4.6 before installing GNURadio (please refer to the GNURadio documentation on the provided link).
+- Install GNURadio 3.10 from source. You can follow the official guide from GNURadio provided here: https://wiki.gnuradio.org/index.php?title=LinuxInstall#For_GNU_Radio_3.10,_3.9,_and_Main_Branch.
+  Note that our framework is developed for operation using USRP X410, so you need to install UHD 4.6 before installing GNURadio (please refer to the GNURadio documentation on the provided link).
 - Install the drivers for the SIVERS Semiconductors EVK02001 and EVK06002/3. The instructions and source files are provided by the manufacturer (SIVERS Semiconductors) upon the purchase of these modules. After installation, append the locations of these drivers (the folder paths ending with "cruijff_a" and "Eder_B") to your PYTHONPATH environment variable. Otherwise, you will not be able to import the driver libraries in Python.
 - Download the "OOT_modules_new" folder from this repository. Install all the modules within the folder. You can use the provided "install_module.sh" bash script by replacing the directory for each module you want to install.
 - Download the "Flowgraphs" and "SIVERS_setup_scripts" folders from this repository.
