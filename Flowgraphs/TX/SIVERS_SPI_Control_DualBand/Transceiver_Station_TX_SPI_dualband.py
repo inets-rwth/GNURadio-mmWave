@@ -5,8 +5,8 @@
 # SPDX-License-Identifier: GPL-3.0
 #
 # GNU Radio Python Flow Graph
-# Title: Transceiver Station TX Dual Band SPI
-# Author: Niklas Beckmann, Berk Acikgoez
+# Title: Transceiver Station TX SPI Dual Band
+# Author: Niklas Beckmann, Berk Acikgoez, Aleksandar Ichkov, Aron Schott
 # Copyright: iNets - RWTH
 # GNU Radio version: 3.10.6.0
 
@@ -30,22 +30,21 @@ from gnuradio import eng_notation
 from gnuradio import iNETS_BeamManager
 from gnuradio import iNETS_PHYHeader
 from gnuradio import iNETS_PacketizedLink
-from gnuradio import iNETS_SIVERSControl
 from gnuradio import network
-from phy_transceiver_tx_dualband_spi import phy_transceiver_tx_dualband_spi  # grc-generated hier_block
-import Transceiver_Station_TX_dualband_SPI_epy_block_0 as epy_block_0  # embedded python block
+from phy_transceiver_tx_spi_dualband import phy_transceiver_tx_spi_dualband  # grc-generated hier_block
+import Transceiver_Station_TX_SPI_dualband_epy_block_0 as epy_block_0  # embedded python block
 import gnuradio
 import ieee802_11
 import sip
 
 
 
-class Transceiver_Station_TX_dualband_SPI(gr.top_block, Qt.QWidget):
+class Transceiver_Station_TX_SPI_dualband(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "Transceiver Station TX Dual Band SPI", catch_exceptions=True)
+        gr.top_block.__init__(self, "Transceiver Station TX SPI Dual Band", catch_exceptions=True)
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Transceiver Station TX Dual Band SPI")
+        self.setWindowTitle("Transceiver Station TX SPI Dual Band")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -63,7 +62,7 @@ class Transceiver_Station_TX_dualband_SPI(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "Transceiver_Station_TX_dualband_SPI")
+        self.settings = Qt.QSettings("GNU Radio", "Transceiver_Station_TX_SPI_dualband")
 
         try:
             if StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
@@ -262,7 +261,7 @@ class Transceiver_Station_TX_dualband_SPI(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(3, 6):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.phy_transceiver_tx_dualband_spi_0 = phy_transceiver_tx_dualband_spi(
+        self.phy_transceiver_tx_spi_dualband_0 = phy_transceiver_tx_spi_dualband(
             baseband_derotation_volatility=0.8,
             bb_freq_28=bb_freq_28,
             bb_freq_60=bb_freq_60,
@@ -276,8 +275,6 @@ class Transceiver_Station_TX_dualband_SPI(gr.top_block, Qt.QWidget):
             usrp_tx_address=usrp_tx_address,
         )
         self.network_socket_pdu_0 = network.socket_pdu('UDP_SERVER', 'localhost', '52001', 100, False)
-        self.iNETS_SIVERSControl_evk06002_init_tx_0 = iNETS_SIVERSControl.evk06002_init_tx(evk06002_trx_freq, (init_tx_beam + 21), evk06002_init_tx_rf_gain, 238, 115, evk06002_serial, spi_sleep_sec, 'MB1', False)
-        self.iNETS_SIVERSControl_evk02001_init_tx_0 = iNETS_SIVERSControl.evk02001_init_tx(evk02001_trx_freq, init_tx_beam, init_rx_beam, evk02001_init_tx_rf_gain, 153, 238, 115, evk02001_serial, spi_sleep_sec, 'MB1', '202111231800', "_iNETS", False)
         self.iNETS_PacketizedLink_stop_wait_arq_0 = iNETS_PacketizedLink.stop_wait_arq(False, 90e-3, 2, max_mtu_size, 0, scrambler_seed, init_tx_beam, init_rx_beam, evk02001_init_tx_rf_gain, True, sta_code, partner_sta_code, '/home/inets/Workspace/GNURadio_logs/TX_USB/Stop_Wait_ARQ/')
         self.iNETS_BeamManager_beamsteering_protocol_0 = iNETS_BeamManager.beamsteering_protocol(2, "_iNETS", 0, sta_code, False, 15, True, 0.2, 0.2, 0.1, 0.28, 0.065, 0.035, 0.065, 1.5, 0.035, 0.2, 0.8, 1.2, '', '/home/inets/Workspace/GNURadio_logs/TX_USB/Beamsteering_Protocol_events_configs/', False, '/home/inets/Workspace/GNURadio_logs/TX_USB/Beamsteering_Protocol_persector/', 11, 1, 2.0, 1.0, 3.0, 1, init_tx_beam, 0.065, True)
         self.epy_block_0 = epy_block_0.blk()
@@ -309,18 +306,16 @@ class Transceiver_Station_TX_dualband_SPI(gr.top_block, Qt.QWidget):
         self.msg_connect((self.iNETS_BeamManager_beamsteering_protocol_0, 'gui_out'), (self.epy_block_0, 'message_in'))
         self.msg_connect((self.iNETS_BeamManager_beamsteering_protocol_0, 'out'), (self.iNETS_PacketizedLink_stop_wait_arq_0, 'beamforming_protocol_in'))
         self.msg_connect((self.iNETS_PacketizedLink_stop_wait_arq_0, 'beamforming_protocol_out'), (self.iNETS_BeamManager_beamsteering_protocol_0, 'in'))
-        self.msg_connect((self.iNETS_PacketizedLink_stop_wait_arq_0, 'antenna_array_control_out'), (self.iNETS_SIVERSControl_evk02001_init_tx_0, 'MAC_control_message_in'))
-        self.msg_connect((self.iNETS_PacketizedLink_stop_wait_arq_0, 'antenna_array_control_out'), (self.iNETS_SIVERSControl_evk06002_init_tx_0, 'MAC_control_message_in'))
         self.msg_connect((self.iNETS_PacketizedLink_stop_wait_arq_0, 'udp_socket_out'), (self.network_socket_pdu_0, 'pdus'))
-        self.msg_connect((self.iNETS_PacketizedLink_stop_wait_arq_0, 'phy_out'), (self.phy_transceiver_tx_dualband_spi_0, 'TX PHY in'))
+        self.msg_connect((self.iNETS_PacketizedLink_stop_wait_arq_0, 'phy_out'), (self.phy_transceiver_tx_spi_dualband_0, 'TX PHY in'))
         self.msg_connect((self.network_socket_pdu_0, 'pdus'), (self.iNETS_PacketizedLink_stop_wait_arq_0, 'udp_socket_in'))
         self.connect((self.epy_block_0, 0), (self.qtgui_number_sink_0, 0))
-        self.connect((self.phy_transceiver_tx_dualband_spi_0, 1), (self.qtgui_const_sink_x_0, 0))
-        self.connect((self.phy_transceiver_tx_dualband_spi_0, 0), (self.qtgui_time_sink_x_0, 0))
+        self.connect((self.phy_transceiver_tx_spi_dualband_0, 1), (self.qtgui_const_sink_x_0, 0))
+        self.connect((self.phy_transceiver_tx_spi_dualband_0, 0), (self.qtgui_time_sink_x_0, 0))
 
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "Transceiver_Station_TX_dualband_SPI")
+        self.settings = Qt.QSettings("GNU Radio", "Transceiver_Station_TX_SPI_dualband")
         self.settings.setValue("geometry", self.saveGeometry())
         self.stop()
         self.wait()
@@ -332,14 +327,14 @@ class Transceiver_Station_TX_dualband_SPI(gr.top_block, Qt.QWidget):
 
     def set_usrp_tx_subdev_spec(self, usrp_tx_subdev_spec):
         self.usrp_tx_subdev_spec = usrp_tx_subdev_spec
-        self.phy_transceiver_tx_dualband_spi_0.set_subdev_spec_TX(self.usrp_tx_subdev_spec)
+        self.phy_transceiver_tx_spi_dualband_0.set_subdev_spec_TX(self.usrp_tx_subdev_spec)
 
     def get_usrp_tx_address(self):
         return self.usrp_tx_address
 
     def set_usrp_tx_address(self, usrp_tx_address):
         self.usrp_tx_address = usrp_tx_address
-        self.phy_transceiver_tx_dualband_spi_0.set_usrp_tx_address(self.usrp_tx_address)
+        self.phy_transceiver_tx_spi_dualband_0.set_usrp_tx_address(self.usrp_tx_address)
 
     def get_sweeping(self):
         return self.sweeping
@@ -359,7 +354,7 @@ class Transceiver_Station_TX_dualband_SPI(gr.top_block, Qt.QWidget):
 
     def set_sps(self, sps):
         self.sps = sps
-        self.phy_transceiver_tx_dualband_spi_0.set_sps(self.sps)
+        self.phy_transceiver_tx_spi_dualband_0.set_sps(self.sps)
 
     def get_spi_sleep_sec(self):
         return self.spi_sleep_sec
@@ -378,7 +373,7 @@ class Transceiver_Station_TX_dualband_SPI(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.phy_transceiver_tx_dualband_spi_0.set_samp_rate(self.samp_rate)
+        self.phy_transceiver_tx_spi_dualband_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
 
     def get_rand_pad(self):
@@ -386,7 +381,7 @@ class Transceiver_Station_TX_dualband_SPI(gr.top_block, Qt.QWidget):
 
     def set_rand_pad(self, rand_pad):
         self.rand_pad = rand_pad
-        self.phy_transceiver_tx_dualband_spi_0.set_rand_pad(self.rand_pad)
+        self.phy_transceiver_tx_spi_dualband_0.set_rand_pad(self.rand_pad)
 
     def get_partner_sta_code(self):
         return self.partner_sta_code
@@ -399,14 +394,14 @@ class Transceiver_Station_TX_dualband_SPI(gr.top_block, Qt.QWidget):
 
     def set_max_mtu_size(self, max_mtu_size):
         self.max_mtu_size = max_mtu_size
-        self.phy_transceiver_tx_dualband_spi_0.set_max_mtu_size(self.max_mtu_size)
+        self.phy_transceiver_tx_spi_dualband_0.set_max_mtu_size(self.max_mtu_size)
 
     def get_init_tx_beam(self):
         return self.init_tx_beam
 
     def set_init_tx_beam(self, init_tx_beam):
         self.init_tx_beam = init_tx_beam
-        self.phy_transceiver_tx_dualband_spi_0.set_init_beam(self.init_tx_beam)
+        self.phy_transceiver_tx_spi_dualband_0.set_init_beam(self.init_tx_beam)
 
     def get_init_rx_beam(self):
         return self.init_rx_beam
@@ -461,7 +456,7 @@ class Transceiver_Station_TX_dualband_SPI(gr.top_block, Qt.QWidget):
 
     def set_detector_threshold(self, detector_threshold):
         self.detector_threshold = detector_threshold
-        self.phy_transceiver_tx_dualband_spi_0.set_detector_threshold(self.detector_threshold)
+        self.phy_transceiver_tx_spi_dualband_0.set_detector_threshold(self.detector_threshold)
 
     def get_beam_id(self):
         return self.beam_id
@@ -475,19 +470,19 @@ class Transceiver_Station_TX_dualband_SPI(gr.top_block, Qt.QWidget):
 
     def set_bb_freq_60(self, bb_freq_60):
         self.bb_freq_60 = bb_freq_60
-        self.phy_transceiver_tx_dualband_spi_0.set_bb_freq_60(self.bb_freq_60)
+        self.phy_transceiver_tx_spi_dualband_0.set_bb_freq_60(self.bb_freq_60)
 
     def get_bb_freq_28(self):
         return self.bb_freq_28
 
     def set_bb_freq_28(self, bb_freq_28):
         self.bb_freq_28 = bb_freq_28
-        self.phy_transceiver_tx_dualband_spi_0.set_bb_freq_28(self.bb_freq_28)
+        self.phy_transceiver_tx_spi_dualband_0.set_bb_freq_28(self.bb_freq_28)
 
 
 
 
-def main(top_block_cls=Transceiver_Station_TX_dualband_SPI, options=None):
+def main(top_block_cls=Transceiver_Station_TX_SPI_dualband, options=None):
 
     if StrictVersion("4.5.0") <= StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
         style = gr.prefs().get_string('qtgui', 'style', 'raster')

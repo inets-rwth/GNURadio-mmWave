@@ -78,7 +78,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1288, 84.0]
+    coordinate: [848, 108.0]
     rotation: 0
     state: true
 - name: detector_threshold
@@ -91,30 +91,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [944, 4.0]
-    rotation: 0
-    state: true
-- name: evk_serial
-  id: variable
-  parameters:
-    comment: replace this with the serial number of your EVK device
-    value: '"SNSP210073"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [488, 68.0]
-    rotation: 0
-    state: true
-- name: evk_trx_freq
-  id: variable
-  parameters:
-    comment: ''
-    value: 27.45e9
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [928, 68.0]
     rotation: 0
     state: true
 - name: header_format
@@ -138,7 +114,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [712, 68.0]
+    coordinate: [592, 68.0]
     rotation: 0
     state: true
 - name: init_tx_beam
@@ -150,7 +126,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [608, 68.0]
+    coordinate: [488, 68.0]
     rotation: 0
     state: true
 - name: init_tx_rf_gain
@@ -162,7 +138,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [816, 68.0]
+    coordinate: [696, 68.0]
     rotation: 0
     state: true
 - name: max_mtu_size
@@ -276,7 +252,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1296, 228.0]
+    coordinate: [856, 252.0]
     rotation: 0
     state: true
 - name: usrp_tx_address
@@ -343,7 +319,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1352, 432.0]
+    coordinate: [912, 456.0]
     rotation: 0
     state: enabled
 - name: iNETS_BeamManager_beamsteering_protocol_0
@@ -390,30 +366,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [808, 140.0]
+    coordinate: [368, 164.0]
     rotation: 0
     state: true
-- name: iNETS_PacketizedLink_RX_PHY_logger_0
-  id: iNETS_PacketizedLink_RX_PHY_logger
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    log_file_parent_dir: /home/inets/Workspace/GNURadio_logs/TX_USB/RX_PHY_Logger_events/
-    log_per_sector: 'False'
-    log_per_sector_parent_dir: /home/inets/Workspace/GNURadio_logs/TX_USB/RX_PHY_Logger_perposition/
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    mode: defined
-    simulation: 'True'
-    station_code: sta_code
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [40, 556.0]
-    rotation: 180
-    state: disabled
 - name: iNETS_PacketizedLink_stop_wait_arq_0
   id: iNETS_PacketizedLink_stop_wait_arq
   parameters:
@@ -439,35 +394,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [792, 476.0]
-    rotation: 180
-    state: true
-- name: iNETS_SIVERSControl_evk02001_init_tx_0
-  id: iNETS_SIVERSControl_evk02001_init_tx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    custom_beambook_suffix: None
-    do_lo_leakage_cal: 'False'
-    evkplatform_type: MB1
-    initial_RX_RF_gain: '238'
-    initial_RX_vga_1_2_gain: '115'
-    initial_TX_BF_gain: '153'
-    initial_TX_RF_gain: init_tx_rf_gain
-    initial_rx_beam_index: init_rx_beam
-    initial_tx_beam_index: init_tx_beam
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    sleep_amount: '0'
-    trx_frequency: evk_trx_freq
-    unit_name: evk_serial
-    version_num: '202111231800'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [40, 300.0]
+    coordinate: [352, 532.0]
     rotation: 180
     state: true
 - name: import_0
@@ -488,12 +415,12 @@ blocks:
   parameters:
     alias: ''
     comment: ''
-    imports: from gnuradio import iNETS_PHYHeader
+    imports: from gnuradio import digital
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 228.0]
+    coordinate: [8, 196.0]
     rotation: 0
     state: true
 - name: import_2
@@ -501,12 +428,12 @@ blocks:
   parameters:
     alias: ''
     comment: ''
-    imports: from gnuradio import digital
+    imports: from gnuradio import iNETS_PHYHeader
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 180.0]
+    coordinate: [8, 260.0]
     rotation: 0
     state: true
 - name: import_3
@@ -519,7 +446,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [104, 180.0]
+    coordinate: [8, 324.0]
     rotation: 0
     state: enabled
 - name: network_socket_pdu_0
@@ -539,7 +466,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [888, 380.0]
+    coordinate: [424, 420.0]
     rotation: 0
     state: true
 - name: phy_transceiver_tx_usb_0
@@ -564,7 +491,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [792, 700.0]
+    coordinate: [352, 772.0]
     rotation: 0
     state: true
 - name: qtgui_const_sink_x_0
@@ -656,28 +583,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1184, 800.0]
+    coordinate: [736, 900.0]
     rotation: 0
     state: true
-- name: qtgui_graphicitem_0
-  id: qtgui_graphicitem
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    file: /home/inets/Workspace/beam_plots/beamId_1.png
-    fixedsize: 'False'
-    gui_hint: 0,2,4,1
-    height: '0'
-    scaleImage: 'True'
-    width: '0'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1696, 568.0]
-    rotation: 0
-    state: disabled
 - name: qtgui_number_sink_0
   id: qtgui_number_sink
   parameters:
@@ -738,7 +646,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1632, 168.0]
+    coordinate: [1192, 196.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0
@@ -835,24 +743,19 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1184, 712.0]
+    coordinate: [744, 772.0]
     rotation: 0
     state: true
 
 connections:
 - [epy_block_0, '0', qtgui_number_sink_0, '0']
-- [epy_block_0, image_portName, qtgui_graphicitem_0, filename]
 - [iNETS_BeamManager_beamsteering_protocol_0, gui_out, epy_block_0, message_in]
 - [iNETS_BeamManager_beamsteering_protocol_0, out, iNETS_PacketizedLink_stop_wait_arq_0,
   beamforming_protocol_in]
-- [iNETS_PacketizedLink_stop_wait_arq_0, antenna_array_control_out, iNETS_SIVERSControl_evk02001_init_tx_0,
-  MAC_control_message_in]
 - [iNETS_PacketizedLink_stop_wait_arq_0, beamforming_protocol_out, iNETS_BeamManager_beamsteering_protocol_0,
   in]
 - [iNETS_PacketizedLink_stop_wait_arq_0, phy_out, phy_transceiver_tx_usb_0, TX PHY
     in]
-- [iNETS_PacketizedLink_stop_wait_arq_0, rx_phy_logger_out, iNETS_PacketizedLink_RX_PHY_logger_0,
-  rx_logger_in]
 - [iNETS_PacketizedLink_stop_wait_arq_0, udp_socket_out, network_socket_pdu_0, pdus]
 - [network_socket_pdu_0, pdus, iNETS_PacketizedLink_stop_wait_arq_0, udp_socket_in]
 - [phy_transceiver_tx_usb_0, '0', qtgui_time_sink_x_0, '0']

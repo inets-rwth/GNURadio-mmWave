@@ -45,40 +45,6 @@ blocks:
     coordinate: [808, 12.0]
     rotation: 0
     state: true
-- name: beam_id
-  id: variable_qtgui_chooser
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: Choose Fixed TX Beam
-    label0: ''
-    label1: ''
-    label2: ''
-    label3: ''
-    label4: ''
-    labels: '[" Omni beam", "Beam 1", "Beam 2", "Beam 3", "Beam 4", "Beam 5", "Beam
-      6", "Beam 7", "Beam 8", "Beam 9", "Beam 10", "Beam 11", "Beam 12", "Beam 13",
-      "Beam 14", "Beam 15", "Beam 16", "Beam 17", "Beam 18", "Beam 19", "Beam 20",
-      "Beam 21"]'
-    num_opts: '0'
-    option0: '0'
-    option1: '1'
-    option2: '2'
-    option3: '3'
-    option4: '4'
-    options: '[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
-      20, 21]'
-    orient: Qt.QVBoxLayout
-    type: real
-    value: '0'
-    widget: combo_box
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1272, 180.0]
-    rotation: 0
-    state: disabled
 - name: detector_threshold
   id: variable
   parameters:
@@ -89,30 +55,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [904, 12.0]
-    rotation: 0
-    state: true
-- name: evk_serial
-  id: variable
-  parameters:
-    comment: replace this with the serial number of your EVK device
-    value: '"SNSP210071"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1008, 76.0]
-    rotation: 0
-    state: true
-- name: evk_trx_freq
-  id: variable
-  parameters:
-    comment: ''
-    value: 27.44e9
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1128, 76.0]
     rotation: 0
     state: true
 - name: header_format
@@ -274,7 +216,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1272, 316.0]
+    coordinate: [856, 180.0]
     rotation: 0
     state: true
 - name: usrp_rx_address
@@ -301,69 +243,6 @@ blocks:
     coordinate: [864, 76.0]
     rotation: 0
     state: true
-- name: epy_block_0
-  id: epy_block
-  parameters:
-    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
-      \ GRC will instantiate the first class it finds\nto get ports and parameters\
-      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
-      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
-      from gnuradio import gr\nimport pmt\nimport time\n\n\nclass blk(gr.sync_block):\
-      \  # other base classes are basic_block, decim_block, interp_block\n    \"\"\
-      \"Embedded Python Block example - a simple multiply const\"\"\"\n\n    def __init__(self):\
-      \  # only default arguments here\n        \"\"\"arguments to this function show\
-      \ up as parameters in GRC\"\"\"\n        gr.sync_block.__init__(\n         \
-      \   self,\n            name='GUI data handling',   # will show up in GRC\n \
-      \           in_sig=None,\n            out_sig=[np.short, np.short, np.single]\n\
-      \        )\n        # if an attribute with the same name as a parameter is found,\n\
-      \        # a callback is registered (properties work, too).\n        self.message_port_register_in(pmt.intern('message_in'))\n\
-      \        self.message_port_register_in(pmt.intern('snr_message_in'))\n\n   \
-      \     self.set_msg_handler(pmt.intern('message_in'), self.handle_msg)\n    \
-      \    self.set_msg_handler(pmt.intern('snr_message_in'), self.handle_snr_msg)\n\
-      \n        self.rx_beam_id = 0\n        self.tx_beam_id = 0\n        self.best_beam\
-      \ = 0\n        self.last_rssi = 0\n        self.last_preamble_snr = 0\n    \
-      \    self.preamble_rss = 0\n        self.mcs = 0\n\n        self.lastTime =\
-      \ time.time()\n\n    def work(self, input_items, output_items):\n        \"\"\
-      \"example: multiply with constant\"\"\"\n        output_items[0][:] = self.rx_beam_id\n\
-      \        output_items[1][:] = self.tx_beam_id\n        #output_items[2][:] =\
-      \ self.best_beam\n        #output_items[2][:] = self.last_rssi\n        output_items[2][:]\
-      \ = self.last_preamble_snr\n        #output_items[2][:] = self.preamble_rss\n\
-      \n        return len(output_items[0])\n\n    def handle_msg(self, msg):\n\n\
-      \        if pmt.dict_has_key(msg, pmt.string_to_symbol(\"rx_beam_id\")):\n \
-      \           r = pmt.dict_ref(msg, pmt.string_to_symbol(\"rx_beam_id\"), pmt.PMT_NIL)\n\
-      \            if pmt.to_float(r) < 22:\n                self.rx_beam_id = pmt.to_float(r)\n\
-      \        if pmt.dict_has_key(msg, pmt.string_to_symbol(\"tx_beam_id\")):\n \
-      \           r = pmt.dict_ref(msg, pmt.string_to_symbol(\"tx_beam_id\"), pmt.PMT_NIL)\n\
-      \            if pmt.to_float(r) < 22:\n                self.tx_beam_id = pmt.to_float(r)\n\
-      \        if pmt.dict_has_key(msg, pmt.string_to_symbol(\"best_beam\")):\n  \
-      \          r = pmt.dict_ref(msg, pmt.string_to_symbol(\"best_beam\"), pmt.PMT_NIL)\n\
-      \            self.best_beam = pmt.to_float(r)\n        if pmt.dict_has_key(msg,\
-      \ pmt.string_to_symbol(\"last_rssi\")):\n            r = pmt.dict_ref(msg, pmt.string_to_symbol(\"\
-      last_rssi\"), pmt.PMT_NIL)\n            self.last_rssi = pmt.to_float(r)\n \
-      \       #if pmt.dict_has_key(msg, pmt.string_to_symbol(\"last_preamble_snr\"\
-      )):\n        #    r = pmt.dict_ref(msg, pmt.string_to_symbol(\"last_preamble_snr\"\
-      ), pmt.PMT_NIL)\n        #    self.last_preamble_snr = pmt.to_float(r)\n   \
-      \     if pmt.dict_has_key(msg, pmt.string_to_symbol(\"preamble_rss\")):\n  \
-      \          r = pmt.dict_ref(msg, pmt.string_to_symbol(\"preamble_rss\"), pmt.PMT_NIL)\n\
-      \            self.preamble_rss = pmt.to_float(r)\n\n    def handle_snr_msg(self,\
-      \ msg):\n\n        meta = pmt.to_python(pmt.car(msg))\n\n        snr = meta[\"\
-      snr\"]\n        #print('SNR: ', snr, type(snr))\n\n        self.last_preamble_snr\
-      \ = snr\n\n\n"
-    affinity: ''
-    alias: ''
-    comment: ''
-    maxoutbuf: '0'
-    minoutbuf: '0'
-  states:
-    _io_cache: ('GUI data handling', 'blk', [], [('message_in', 'message', 1), ('snr_message_in',
-      'message', 1)], [('0', 'short', 1), ('1', 'short', 1), ('2', 'float', 1)], 'Embedded
-      Python Block example - a simple multiply const', [])
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [320, 808.0]
-    rotation: 0
-    state: disabled
 - name: iNETS_BeamManager_beamsteering_protocol_0
   id: iNETS_BeamManager_beamsteering_protocol
   parameters:
@@ -408,7 +287,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [712, 156.0]
+    coordinate: [344, 156.0]
     rotation: 0
     state: true
 - name: iNETS_PacketizedLink_RX_PHY_logger_0
@@ -429,8 +308,8 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [136, 620.0]
-    rotation: 180
+    coordinate: [112, 732.0]
+    rotation: 0
     state: true
 - name: iNETS_PacketizedLink_stop_wait_arq_0
   id: iNETS_PacketizedLink_stop_wait_arq
@@ -457,35 +336,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [728, 468.0]
-    rotation: 180
-    state: true
-- name: iNETS_SIVERSControl_evk02001_init_rx_0
-  id: iNETS_SIVERSControl_evk02001_init_rx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    custom_beambook_suffix: '"_iNETS"'
-    do_lo_leakage_cal: 'False'
-    evkplatform_type: MB1
-    initial_RX_RF_gain: '238'
-    initial_RX_vga_1_2_gain: '115'
-    initial_TX_BF_gain: '153'
-    initial_TX_RF_gain: '17'
-    initial_rx_beam_index: init_rx_beam
-    initial_tx_beam_index: init_tx_beam
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    sleep_amount: '0'
-    trx_frequency: evk_trx_freq
-    unit_name: evk_serial
-    version_num: '202111231800'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [136, 356.0]
+    coordinate: [392, 476.0]
     rotation: 180
     state: true
 - name: import_0
@@ -557,7 +408,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [992, 356.0]
+    coordinate: [616, 356.0]
     rotation: 0
     state: true
 - name: phy_transceiver_rx_usb_0
@@ -581,7 +432,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [728, 732.0]
+    coordinate: [384, 724.0]
     rotation: 0
     state: true
 - name: qtgui_const_sink_x_0
@@ -673,198 +524,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1272, 796.0]
+    coordinate: [960, 788.0]
     rotation: 0
     state: enabled
-- name: qtgui_number_sink_0
-  id: qtgui_number_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    autoscale: 'False'
-    avg: '0'
-    color1: ("black", "black")
-    color10: ("black", "black")
-    color2: ("black", "black")
-    color3: ("black", "black")
-    color4: ("black", "black")
-    color5: ("black", "black")
-    color6: ("black", "black")
-    color7: ("black", "black")
-    color8: ("black", "black")
-    color9: ("black", "black")
-    comment: ''
-    factor1: '1'
-    factor10: '1'
-    factor2: '1'
-    factor3: '1'
-    factor4: '1'
-    factor5: '1'
-    factor6: '1'
-    factor7: '1'
-    factor8: '1'
-    factor9: '1'
-    graph_type: qtgui.NUM_GRAPH_NONE
-    gui_hint: 2,2,1,1
-    label1: ''
-    label10: ''
-    label2: ''
-    label3: ''
-    label4: ''
-    label5: ''
-    label6: ''
-    label7: ''
-    label8: ''
-    label9: ''
-    max: '1'
-    min: '-1'
-    name: '"SNR"'
-    nconnections: '1'
-    type: float
-    unit1: ''
-    unit10: ''
-    unit2: ''
-    unit3: ''
-    unit4: ''
-    unit5: ''
-    unit6: ''
-    unit7: ''
-    unit8: ''
-    unit9: ''
-    update_time: '0.10'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [568, 940.0]
-    rotation: 0
-    state: disabled
-- name: qtgui_number_sink_1
-  id: qtgui_number_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    autoscale: 'False'
-    avg: '0'
-    color1: ("black", "black")
-    color10: ("black", "black")
-    color2: ("black", "black")
-    color3: ("black", "black")
-    color4: ("black", "black")
-    color5: ("black", "black")
-    color6: ("black", "black")
-    color7: ("black", "black")
-    color8: ("black", "black")
-    color9: ("black", "black")
-    comment: ''
-    factor1: '1'
-    factor10: '1'
-    factor2: '1'
-    factor3: '1'
-    factor4: '1'
-    factor5: '1'
-    factor6: '1'
-    factor7: '1'
-    factor8: '1'
-    factor9: '1'
-    graph_type: qtgui.NUM_GRAPH_NONE
-    gui_hint: 2,1,1,1
-    label1: ''
-    label10: ''
-    label2: ''
-    label3: ''
-    label4: ''
-    label5: ''
-    label6: ''
-    label7: ''
-    label8: ''
-    label9: ''
-    max: '1'
-    min: '-1'
-    name: '"TX Beam ID"'
-    nconnections: '1'
-    type: short
-    unit1: ''
-    unit10: ''
-    unit2: ''
-    unit3: ''
-    unit4: ''
-    unit5: ''
-    unit6: ''
-    unit7: ''
-    unit8: ''
-    unit9: ''
-    update_time: '0.10'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [568, 828.0]
-    rotation: 0
-    state: disabled
-- name: qtgui_number_sink_2
-  id: qtgui_number_sink
-  parameters:
-    affinity: ''
-    alias: ''
-    autoscale: 'False'
-    avg: '0'
-    color1: ("black", "black")
-    color10: ("black", "black")
-    color2: ("black", "black")
-    color3: ("black", "black")
-    color4: ("black", "black")
-    color5: ("black", "black")
-    color6: ("black", "black")
-    color7: ("black", "black")
-    color8: ("black", "black")
-    color9: ("black", "black")
-    comment: ''
-    factor1: '1'
-    factor10: '1'
-    factor2: '1'
-    factor3: '1'
-    factor4: '1'
-    factor5: '1'
-    factor6: '1'
-    factor7: '1'
-    factor8: '1'
-    factor9: '1'
-    graph_type: qtgui.NUM_GRAPH_NONE
-    gui_hint: 2,0,1,1
-    label1: ''
-    label10: ''
-    label2: ''
-    label3: ''
-    label4: ''
-    label5: ''
-    label6: ''
-    label7: ''
-    label8: ''
-    label9: ''
-    max: '1'
-    min: '-1'
-    name: '"RX beam ID"'
-    nconnections: '1'
-    type: short
-    unit1: ''
-    unit10: ''
-    unit2: ''
-    unit3: ''
-    unit4: ''
-    unit5: ''
-    unit6: ''
-    unit7: ''
-    unit8: ''
-    unit9: ''
-    update_time: '0.10'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [568, 716.0]
-    rotation: 0
-    state: disabled
 - name: qtgui_time_sink_x_1
   id: qtgui_time_sink_x
   parameters:
@@ -959,7 +621,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1272, 892.0]
+    coordinate: [960, 884.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_2
@@ -1056,7 +718,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1272, 676.0]
+    coordinate: [960, 668.0]
     rotation: 0
     state: true
 - name: samp_rate
@@ -1078,14 +740,8 @@ blocks:
     state: true
 
 connections:
-- [epy_block_0, '0', qtgui_number_sink_2, '0']
-- [epy_block_0, '1', qtgui_number_sink_1, '0']
-- [epy_block_0, '2', qtgui_number_sink_0, '0']
-- [iNETS_BeamManager_beamsteering_protocol_0, gui_out, epy_block_0, message_in]
 - [iNETS_BeamManager_beamsteering_protocol_0, out, iNETS_PacketizedLink_stop_wait_arq_0,
   beamforming_protocol_in]
-- [iNETS_PacketizedLink_stop_wait_arq_0, antenna_array_control_out, iNETS_SIVERSControl_evk02001_init_rx_0,
-  MAC_control_message_in]
 - [iNETS_PacketizedLink_stop_wait_arq_0, beamforming_protocol_out, iNETS_BeamManager_beamsteering_protocol_0,
   in]
 - [iNETS_PacketizedLink_stop_wait_arq_0, rx_phy_logger_out, iNETS_PacketizedLink_RX_PHY_logger_0,

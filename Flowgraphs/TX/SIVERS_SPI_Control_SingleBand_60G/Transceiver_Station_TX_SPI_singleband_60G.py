@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: GPL-3.0
 #
 # GNU Radio Python Flow Graph
-# Title: Transceiver Station TX Single Band SPI
+# Title: Transceiver Station TX SPI Single Band 60G
 # Author: Niklas Beckmann, Berk Acikgoez, Aleksandar Ichkov, Aron Schott
 # Copyright: iNets - RWTH
 # GNU Radio version: 3.10.6.0
@@ -31,20 +31,20 @@ from gnuradio import iNETS_BeamManager
 from gnuradio import iNETS_PHYHeader
 from gnuradio import iNETS_PacketizedLink
 from gnuradio import network
-from phy_transceiver_tx_singleband_spi import phy_transceiver_tx_singleband_spi  # grc-generated hier_block
-import Transceiver_Station_TX_singleband_SPI_epy_block_0 as epy_block_0  # embedded python block
+from phy_transceiver_tx_spi_singleband_60g import phy_transceiver_tx_spi_singleband_60g  # grc-generated hier_block
+import Transceiver_Station_TX_SPI_singleband_60G_epy_block_0 as epy_block_0  # embedded python block
 import gnuradio
 import ieee802_11
 import sip
 
 
 
-class Transceiver_Station_TX_singleband_SPI(gr.top_block, Qt.QWidget):
+class Transceiver_Station_TX_SPI_singleband_60G(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "Transceiver Station TX Single Band SPI", catch_exceptions=True)
+        gr.top_block.__init__(self, "Transceiver Station TX SPI Single Band 60G", catch_exceptions=True)
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Transceiver Station TX Single Band SPI")
+        self.setWindowTitle("Transceiver Station TX SPI Single Band 60G")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -62,7 +62,7 @@ class Transceiver_Station_TX_singleband_SPI(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "Transceiver_Station_TX_singleband_SPI")
+        self.settings = Qt.QSettings("GNU Radio", "Transceiver_Station_TX_SPI_singleband_60G")
 
         try:
             if StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
@@ -80,21 +80,18 @@ class Transceiver_Station_TX_singleband_SPI(gr.top_block, Qt.QWidget):
         self.sweeping = sweeping = True
         self.sta_code = sta_code = 11
         self.sps = sps = 4
-        self.spi_sleep_sec = spi_sleep_sec = 15
         self.scrambler_seed = scrambler_seed = 111
         self.samp_rate = samp_rate = 2000000
         self.rand_pad = rand_pad = 20
         self.partner_sta_code = partner_sta_code = 12
         self.max_mtu_size = max_mtu_size = 800
         self.init_tx_rf_gain = init_tx_rf_gain = 0x44
-        self.init_tx_beam = init_tx_beam = 11
+        self.init_tx_beam = init_tx_beam = 32
         self.init_rx_beam = init_rx_beam = 0
         self.header_format = header_format = iNETS_PHYHeader.phy_header().formatter()
-        self.evk_trx_freq = evk_trx_freq = 27.45e9
-        self.evk_serial = evk_serial = "SNSP210071"
         self.detector_threshold = detector_threshold = 60
         self.beam_id = beam_id = 11
-        self.bb_freq_28 = bb_freq_28 = 25e6
+        self.bb_freq_60 = bb_freq_60 = 100e6
 
         ##################################################
         # Blocks
@@ -257,9 +254,9 @@ class Transceiver_Station_TX_singleband_SPI(gr.top_block, Qt.QWidget):
             self.top_grid_layout.setRowStretch(r, 1)
         for c in range(3, 6):
             self.top_grid_layout.setColumnStretch(c, 1)
-        self.phy_transceiver_tx_singleband_spi_0 = phy_transceiver_tx_singleband_spi(
+        self.phy_transceiver_tx_spi_singleband_60g_0 = phy_transceiver_tx_spi_singleband_60g(
             baseband_derotation_volatility=0.8,
-            bb_freq_28=bb_freq_28,
+            bb_freq_60=bb_freq_60,
             detector_threshold=detector_threshold,
             init_beam=init_tx_beam,
             max_mtu_size=max_mtu_size,
@@ -302,15 +299,15 @@ class Transceiver_Station_TX_singleband_SPI(gr.top_block, Qt.QWidget):
         self.msg_connect((self.iNETS_BeamManager_beamsteering_protocol_0, 'out'), (self.iNETS_PacketizedLink_stop_wait_arq_0, 'beamforming_protocol_in'))
         self.msg_connect((self.iNETS_PacketizedLink_stop_wait_arq_0, 'beamforming_protocol_out'), (self.iNETS_BeamManager_beamsteering_protocol_0, 'in'))
         self.msg_connect((self.iNETS_PacketizedLink_stop_wait_arq_0, 'udp_socket_out'), (self.network_socket_pdu_0, 'pdus'))
-        self.msg_connect((self.iNETS_PacketizedLink_stop_wait_arq_0, 'phy_out'), (self.phy_transceiver_tx_singleband_spi_0, 'TX PHY in'))
+        self.msg_connect((self.iNETS_PacketizedLink_stop_wait_arq_0, 'phy_out'), (self.phy_transceiver_tx_spi_singleband_60g_0, 'TX PHY in'))
         self.msg_connect((self.network_socket_pdu_0, 'pdus'), (self.iNETS_PacketizedLink_stop_wait_arq_0, 'udp_socket_in'))
         self.connect((self.epy_block_0, 0), (self.qtgui_number_sink_0, 0))
-        self.connect((self.phy_transceiver_tx_singleband_spi_0, 1), (self.qtgui_const_sink_x_0, 0))
-        self.connect((self.phy_transceiver_tx_singleband_spi_0, 0), (self.qtgui_time_sink_x_0, 0))
+        self.connect((self.phy_transceiver_tx_spi_singleband_60g_0, 1), (self.qtgui_const_sink_x_0, 0))
+        self.connect((self.phy_transceiver_tx_spi_singleband_60g_0, 0), (self.qtgui_time_sink_x_0, 0))
 
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "Transceiver_Station_TX_singleband_SPI")
+        self.settings = Qt.QSettings("GNU Radio", "Transceiver_Station_TX_SPI_singleband_60G")
         self.settings.setValue("geometry", self.saveGeometry())
         self.stop()
         self.wait()
@@ -322,14 +319,14 @@ class Transceiver_Station_TX_singleband_SPI(gr.top_block, Qt.QWidget):
 
     def set_usrp_tx_subdev_spec(self, usrp_tx_subdev_spec):
         self.usrp_tx_subdev_spec = usrp_tx_subdev_spec
-        self.phy_transceiver_tx_singleband_spi_0.set_subdev_spec_TX(self.usrp_tx_subdev_spec)
+        self.phy_transceiver_tx_spi_singleband_60g_0.set_subdev_spec_TX(self.usrp_tx_subdev_spec)
 
     def get_usrp_tx_address(self):
         return self.usrp_tx_address
 
     def set_usrp_tx_address(self, usrp_tx_address):
         self.usrp_tx_address = usrp_tx_address
-        self.phy_transceiver_tx_singleband_spi_0.set_usrp_tx_address(self.usrp_tx_address)
+        self.phy_transceiver_tx_spi_singleband_60g_0.set_usrp_tx_address(self.usrp_tx_address)
 
     def get_sweeping(self):
         return self.sweeping
@@ -349,13 +346,7 @@ class Transceiver_Station_TX_singleband_SPI(gr.top_block, Qt.QWidget):
 
     def set_sps(self, sps):
         self.sps = sps
-        self.phy_transceiver_tx_singleband_spi_0.set_sps(self.sps)
-
-    def get_spi_sleep_sec(self):
-        return self.spi_sleep_sec
-
-    def set_spi_sleep_sec(self, spi_sleep_sec):
-        self.spi_sleep_sec = spi_sleep_sec
+        self.phy_transceiver_tx_spi_singleband_60g_0.set_sps(self.sps)
 
     def get_scrambler_seed(self):
         return self.scrambler_seed
@@ -368,7 +359,7 @@ class Transceiver_Station_TX_singleband_SPI(gr.top_block, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
-        self.phy_transceiver_tx_singleband_spi_0.set_samp_rate(self.samp_rate)
+        self.phy_transceiver_tx_spi_singleband_60g_0.set_samp_rate(self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
 
     def get_rand_pad(self):
@@ -376,7 +367,7 @@ class Transceiver_Station_TX_singleband_SPI(gr.top_block, Qt.QWidget):
 
     def set_rand_pad(self, rand_pad):
         self.rand_pad = rand_pad
-        self.phy_transceiver_tx_singleband_spi_0.set_rand_pad(self.rand_pad)
+        self.phy_transceiver_tx_spi_singleband_60g_0.set_rand_pad(self.rand_pad)
 
     def get_partner_sta_code(self):
         return self.partner_sta_code
@@ -389,7 +380,7 @@ class Transceiver_Station_TX_singleband_SPI(gr.top_block, Qt.QWidget):
 
     def set_max_mtu_size(self, max_mtu_size):
         self.max_mtu_size = max_mtu_size
-        self.phy_transceiver_tx_singleband_spi_0.set_max_mtu_size(self.max_mtu_size)
+        self.phy_transceiver_tx_spi_singleband_60g_0.set_max_mtu_size(self.max_mtu_size)
 
     def get_init_tx_rf_gain(self):
         return self.init_tx_rf_gain
@@ -402,7 +393,7 @@ class Transceiver_Station_TX_singleband_SPI(gr.top_block, Qt.QWidget):
 
     def set_init_tx_beam(self, init_tx_beam):
         self.init_tx_beam = init_tx_beam
-        self.phy_transceiver_tx_singleband_spi_0.set_init_beam(self.init_tx_beam)
+        self.phy_transceiver_tx_spi_singleband_60g_0.set_init_beam(self.init_tx_beam)
 
     def get_init_rx_beam(self):
         return self.init_rx_beam
@@ -416,24 +407,12 @@ class Transceiver_Station_TX_singleband_SPI(gr.top_block, Qt.QWidget):
     def set_header_format(self, header_format):
         self.header_format = header_format
 
-    def get_evk_trx_freq(self):
-        return self.evk_trx_freq
-
-    def set_evk_trx_freq(self, evk_trx_freq):
-        self.evk_trx_freq = evk_trx_freq
-
-    def get_evk_serial(self):
-        return self.evk_serial
-
-    def set_evk_serial(self, evk_serial):
-        self.evk_serial = evk_serial
-
     def get_detector_threshold(self):
         return self.detector_threshold
 
     def set_detector_threshold(self, detector_threshold):
         self.detector_threshold = detector_threshold
-        self.phy_transceiver_tx_singleband_spi_0.set_detector_threshold(self.detector_threshold)
+        self.phy_transceiver_tx_spi_singleband_60g_0.set_detector_threshold(self.detector_threshold)
 
     def get_beam_id(self):
         return self.beam_id
@@ -442,17 +421,17 @@ class Transceiver_Station_TX_singleband_SPI(gr.top_block, Qt.QWidget):
         self.beam_id = beam_id
         self._beam_id_callback(self.beam_id)
 
-    def get_bb_freq_28(self):
-        return self.bb_freq_28
+    def get_bb_freq_60(self):
+        return self.bb_freq_60
 
-    def set_bb_freq_28(self, bb_freq_28):
-        self.bb_freq_28 = bb_freq_28
-        self.phy_transceiver_tx_singleband_spi_0.set_bb_freq_28(self.bb_freq_28)
-
-
+    def set_bb_freq_60(self, bb_freq_60):
+        self.bb_freq_60 = bb_freq_60
+        self.phy_transceiver_tx_spi_singleband_60g_0.set_bb_freq_60(self.bb_freq_60)
 
 
-def main(top_block_cls=Transceiver_Station_TX_singleband_SPI, options=None):
+
+
+def main(top_block_cls=Transceiver_Station_TX_SPI_singleband_60G, options=None):
 
     if StrictVersion("4.5.0") <= StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
         style = gr.prefs().get_string('qtgui', 'style', 'raster')

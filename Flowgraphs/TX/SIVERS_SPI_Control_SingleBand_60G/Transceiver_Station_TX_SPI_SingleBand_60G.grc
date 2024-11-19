@@ -5,13 +5,13 @@ options:
     category: '[GRC Hier Blocks]'
     cmake_opt: ''
     comment: ''
-    copyright: iNETS - RWTH
+    copyright: iNets - RWTH
     description: ''
     gen_cmake: 'On'
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: Transceiver_Station_RX_SPI_60G
+    id: Transceiver_Station_TX_SPI_singleband_60G
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -22,27 +22,63 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: Transceiver Station RX SPI 60G
+    title: Transceiver Station TX SPI Single Band 60G
     window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 8]
+    coordinate: [8, 4.0]
     rotation: 0
     state: enabled
 
 blocks:
-- name: bb_freq
+- name: bb_freq_60
   id: variable
   parameters:
     comment: ''
-    value: 369.8e6
+    value: 100e6
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [808, 12.0]
+    coordinate: [848, 4.0]
+    rotation: 0
+    state: true
+- name: beam_id
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: 1,0,1,2
+    label: Choose Fixed TX Beam
+    label0: ''
+    label1: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    labels: '["Omni Beam", "Omni Beam", "Beam 1","Beam 1","Beam 2", "Beam 2", "Beam
+      3","Beam 3", "Beam 4","Beam 4", "Beam 5","Beam 5", "Beam 6","Beam 6", "Beam
+      7", "Beam 7","Beam 8", "Beam 8","Beam 9", "Beam 9","Beam 10", "Beam 10", "Beam
+      11", "Beam 11","Beam 12", "Beam 12","Beam 13", "Beam 13","Beam 14", "Beam 14",
+      "Beam 15", "Beam 15","Beam 16", "Beam 16","Beam 17", "Beam 17","Beam 18", "Beam
+      18","Beam 19", "Beam 19","Beam 20", "Beam 20", "Beam 21", "Beam 21"]'
+    num_opts: '0'
+    option0: '0'
+    option1: '1'
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0,0,1,1,2, 2, 3, 3, 4, 4, 5, 5, 6,6, 7,7,8, 8,9, 9,10, 10,11, 11,12,
+      12,13, 13, 14, 14,15,15, 16,16, 17,17, 18, 18, 19,19, 20,20, 21,21]'
+    orient: Qt.QVBoxLayout
+    type: real
+    value: '11'
+    widget: combo_box
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [944, 524.0]
     rotation: 0
     state: true
 - name: detector_threshold
@@ -54,7 +90,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [904, 12.0]
+    coordinate: [944, 4.0]
     rotation: 0
     state: true
 - name: header_format
@@ -66,7 +102,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [416, 12.0]
+    coordinate: [456, 4.0]
     rotation: 0
     state: enabled
 - name: init_rx_beam
@@ -78,7 +114,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1256, 12.0]
+    coordinate: [280, 68.0]
     rotation: 0
     state: true
 - name: init_tx_beam
@@ -90,19 +126,19 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1152, 12.0]
+    coordinate: [176, 68.0]
     rotation: 0
     state: true
-- name: len_key
+- name: init_tx_rf_gain
   id: variable
   parameters:
     comment: ''
-    value: '"packet_len"'
+    value: '0xFF'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1040, 12.0]
+    coordinate: [384, 68.0]
     rotation: 0
     state: true
 - name: max_mtu_size
@@ -114,31 +150,19 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [304, 12.0]
-    rotation: 0
-    state: true
-- name: num_key
-  id: variable
-  parameters:
-    comment: ''
-    value: '"packet_num"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [304, 76.0]
+    coordinate: [344, 4.0]
     rotation: 0
     state: true
 - name: partner_sta_code
   id: variable
   parameters:
     comment: ''
-    value: '11'
+    value: '12'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [584, 76.0]
+    coordinate: [1168, 4.0]
     rotation: 0
     state: true
 - name: rand_pad
@@ -150,9 +174,21 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [720, 12.0]
+    coordinate: [760, 4.0]
     rotation: 0
     state: true
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: '2000000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [176, 4.0]
+    rotation: 0
+    state: enabled
 - name: scrambler_seed
   id: variable
   parameters:
@@ -162,7 +198,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [600, 12.0]
+    coordinate: [640, 4.0]
     rotation: 0
     state: true
 - name: sps
@@ -174,26 +210,26 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [424, 76.0]
+    coordinate: [272, 4.0]
     rotation: 0
     state: true
 - name: sta_code
   id: variable
   parameters:
     comment: ''
-    value: '13'
+    value: '11'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 76.0]
+    coordinate: [1080, 4.0]
     rotation: 0
     state: true
 - name: sweeping
   id: variable_qtgui_chooser
   parameters:
     comment: ''
-    gui_hint: ''
+    gui_hint: 0,0,1,2
     label: Choose Beam Sweeping Type
     label0: Fixed TX beam
     label1: Full TX beam sweep
@@ -216,34 +252,22 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [936, 308.0]
+    coordinate: [952, 668.0]
     rotation: 0
     state: true
-- name: time_per_angle_sec
-  id: variable
-  parameters:
-    comment: ''
-    value: '1.7'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1024, 76.0]
-    rotation: 0
-    state: true
-- name: usrp_rx_address
+- name: usrp_tx_address
   id: variable
   parameters:
     comment: replace this with the IP address of your USRP
-    value: '"addr=192.168.100.43"'
+    value: '"addr=192.168.10.2"'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [712, 76.0]
+    coordinate: [640, 68.0]
     rotation: 0
     state: true
-- name: usrp_rx_subdev_spec
+- name: usrp_tx_subdev_spec
   id: variable
   parameters:
     comment: ''
@@ -252,43 +276,86 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [880, 76.0]
+    coordinate: [496, 68.0]
     rotation: 0
     state: true
+- name: epy_block_0
+  id: epy_block
+  parameters:
+    _source_code: "\"\"\"\nEmbedded Python Blocks:\n\nEach time this file is saved,\
+      \ GRC will instantiate the first class it finds\nto get ports and parameters\
+      \ of your block. The arguments to __init__  will\nbe the parameters. All of\
+      \ them are required to have default values!\n\"\"\"\n\nimport numpy as np\n\
+      from gnuradio import gr\nimport pmt\n\n\nclass blk(gr.sync_block):  # other\
+      \ base classes are basic_block, decim_block, interp_block\n    \"\"\"Embedded\
+      \ Python Block example - a simple multiply const\"\"\"\n\n    def __init__(self):\
+      \  # only default arguments here\n        \"\"\"arguments to this function show\
+      \ up as parameters in GRC\"\"\"\n        gr.sync_block.__init__(\n         \
+      \   self,\n            name='GUI data handling',   # will show up in GRC\n \
+      \           in_sig=None,\n            out_sig=[np.single]\n        )\n     \
+      \   # if an attribute with the same name as a parameter is found,\n        #\
+      \ a callback is registered (properties work, too).\n        self.message_port_register_in(pmt.intern('message_in'))\n\
+      \        self.image_portName = 'image_portName'\n        self.set_msg_handler(pmt.intern('message_in'),\
+      \ self.handle_msg)\n        self.message_port_register_out(pmt.intern(self.image_portName))\n\
+      \        self.tx_beam_id = 0\n\n    def work(self, input_items, output_items):\n\
+      \        \"\"\"example: multiply with constant\"\"\"\n        output_items[0][:]\
+      \ = self.tx_beam_id\n\n\n        return len(output_items[0])\n\n    def handle_msg(self,\
+      \ msg):\n        if pmt.dict_has_key(msg, pmt.string_to_symbol(\"tx_beam_id\"\
+      )):\n            r = pmt.dict_ref(msg, pmt.string_to_symbol(\"tx_beam_id\"),\
+      \ pmt.PMT_NIL)\n            if pmt.to_long(r) < 22:\n                self.tx_beam_id\
+      \ = pmt.to_long(r)\n                PMT_beam = pmt.string_to_symbol('/home/inets/Workspace/beam_plots/beamId_'\
+      \ + str(self.tx_beam_id) + '.png')\n                PMT_msg = pmt.cons(pmt.from_bool(True),\
+      \ PMT_beam)\n                self.message_port_pub(pmt.intern(self.image_portName),\
+      \ PMT_msg)\n\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    _io_cache: ('GUI data handling', 'blk', [], [('message_in', 'message', 1)], [('0',
+      'float', 1), ('image_portName', 'message', 1)], 'Embedded Python Block example
+      - a simple multiply const', [])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [856, 280.0]
+    rotation: 0
+    state: enabled
 - name: iNETS_BeamManager_beamsteering_protocol_0
   id: iNETS_BeamManager_beamsteering_protocol
   parameters:
     affinity: ''
     alias: ''
-    beam_interval: '0.03'
+    beam_interval: '0.035'
     beamsteering_algorithm: '2'
     comment: ''
     custom_beambook_suffix: '"_iNETS"'
     experimental_setup_comment: ''
-    fixed_beam: init_rx_beam
-    fixed_beam_backup_link_backup_beam_id: '21'
+    fixed_beam: init_tx_beam
+    fixed_beam_backup_link_backup_beam_id: '1'
     fixed_beam_backup_link_beam_switch_message_retrans_no: '1'
     fixed_beam_backup_link_data_state_duration: '2.0'
     fixed_beam_backup_link_default_beam_id: '11'
     fixed_beam_backup_link_distance: '3.0'
     fixed_beam_backup_link_report_state_duration: '1.0'
-    log_config_parent_dir: /home/inets/Workspace/GNURadio_logs/RX_SPI_60G/Beamsteering_Protocol_events_configs/
+    log_config_parent_dir: /home/inets/Workspace/GNURadio_logs/TX_USB/Beamsteering_Protocol_events_configs/
     log_per_sector: 'False'
-    log_per_sector_parent_dir: /home/inets/Workspace/GNURadio_logs/RX_SPI_60G/Beamsteering_Protocol_persector/
+    log_per_sector_parent_dir: /home/inets/Workspace/GNURadio_logs/TX_USB/Beamsteering_Protocol_persector/
     maxoutbuf: '0'
     minoutbuf: '0'
     retrain_RSSI_threshold: '15'
     single_training_for_TX_and_RX: 'False'
     start_training: 'True'
     station_code: sta_code
-    station_type: '1'
+    station_type: '0'
     sweeping: 'True'
     timeout_PLS: '0.2'
-    timeout_PLS_timer_based: '0.03'
-    timeout_PLS_timer_based_receive_SSW_frames: '0.03'
+    timeout_PLS_timer_based: '0.1'
+    timeout_PLS_timer_based_receive_SSW_frames: '0.065'
     timeout_RSSI_value_interval: '1.2'
     timeout_SLS: '0.2'
-    timeout_SLS_timer_based: '0.24'
+    timeout_SLS_timer_based: '0.28'
     timeout_SLS_timer_based_receive_SSW_frames: '0.065'
     timeout_history_search: '0.2'
     timeout_history_search_receive_SSW_frames: '0.8'
@@ -299,28 +366,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [376, 148.0]
-    rotation: 0
-    state: true
-- name: iNETS_PacketizedLink_RX_PHY_logger_0
-  id: iNETS_PacketizedLink_RX_PHY_logger
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    log_file_parent_dir: /home/inets/Workspace/GNURadio_logs/RX_SPI_60G/RX_PHY_Logger_events/
-    log_per_sector: 'False'
-    log_per_sector_parent_dir: /home/inets/Workspace/GNURadio_logs/RX_SPI_60G/RX_PHY_Logger_perposition/
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    mode: defined
-    simulation: 'False'
-    station_code: sta_code
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [152, 716.0]
+    coordinate: [360, 140.0]
     rotation: 0
     state: true
 - name: iNETS_PacketizedLink_stop_wait_arq_0
@@ -330,8 +376,8 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    conf_parent_dir: /home/inets/Workspace/GNURadio_logs/RX_SPI_60G/Stop_Wait_ARQ/
-    initial_TX_RF_gain: '17'
+    conf_parent_dir: /home/inets/Workspace/GNURadio_logs/TX_USB/Stop_Wait_ARQ/
+    initial_TX_RF_gain: init_tx_rf_gain
     initial_rx_beam_index: init_rx_beam
     initial_tx_beam_index: init_tx_beam
     max_mtu_size: max_mtu_size
@@ -343,12 +389,12 @@ blocks:
     station_code: sta_code
     tx_mcs: '0'
     tx_scrambler_seed: scrambler_seed
-    use_ack: 'True'
+    use_ack: 'False'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 468.0]
+    coordinate: [344, 468.0]
     rotation: 180
     state: true
 - name: import_0
@@ -361,7 +407,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 156.0]
+    coordinate: [8, 132.0]
     rotation: 0
     state: true
 - name: import_1
@@ -374,7 +420,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 220.0]
+    coordinate: [8, 196.0]
     rotation: 0
     state: true
 - name: import_2
@@ -387,7 +433,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 284.0]
+    coordinate: [8, 260.0]
     rotation: 0
     state: true
 - name: import_3
@@ -400,9 +446,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 348.0]
+    coordinate: [8, 324.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: network_socket_pdu_0
   id: network_socket_pdu
   parameters:
@@ -420,32 +466,32 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [656, 348.0]
+    coordinate: [440, 372.0]
     rotation: 0
     state: true
-- name: phy_transceiver_rx_spi_60g_0
-  id: phy_transceiver_rx_spi_60g
+- name: phy_transceiver_tx_spi_singleband_60g_0
+  id: phy_transceiver_tx_spi_singleband_60g
   parameters:
     affinity: ''
     alias: ''
     baseband_derotation_volatility: '0.8'
-    bb_freq: bb_freq
+    bb_freq_60: bb_freq_60
     comment: ''
     detector_threshold: detector_threshold
+    init_beam: init_tx_beam
     max_mtu_size: max_mtu_size
     maxoutbuf: '0'
     minoutbuf: '0'
     rand_pad: rand_pad
     samp_rate: samp_rate
     sps: sps
-    subdev_spec_RX: usrp_rx_subdev_spec
-    time_per_angle: time_per_angle_sec
-    usrp_rx_address: usrp_rx_address
+    subdev_spec_TX: usrp_tx_subdev_spec
+    usrp_tx_address: usrp_tx_address
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [408, 732.0]
+    coordinate: [328, 716.0]
     rotation: 0
     state: true
 - name: qtgui_const_sink_x_0
@@ -476,8 +522,8 @@ blocks:
     color8: '"red"'
     color9: '"red"'
     comment: ''
-    grid: 'False'
-    gui_hint: ''
+    grid: 'True'
+    gui_hint: 0,3,4,3
     label1: ''
     label10: ''
     label2: ''
@@ -499,7 +545,7 @@ blocks:
     marker7: '0'
     marker8: '0'
     marker9: '0'
-    name: '"Payload Constellation after Carrier Sync"'
+    name: '""'
     nconnections: '1'
     size: '1024'
     style1: '0'
@@ -529,18 +575,81 @@ blocks:
     width7: '1'
     width8: '1'
     width9: '1'
-    xmax: '2'
-    xmin: '-2'
-    ymax: '2'
-    ymin: '-2'
+    xmax: '1.5'
+    xmin: '-1.5'
+    ymax: '1'
+    ymin: '-1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [936, 788.0]
+    coordinate: [768, 828.0]
+    rotation: 0
+    state: true
+- name: qtgui_number_sink_0
+  id: qtgui_number_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    autoscale: 'False'
+    avg: '0'
+    color1: ("black", "black")
+    color10: ("black", "black")
+    color2: ("black", "black")
+    color3: ("black", "black")
+    color4: ("black", "black")
+    color5: ("black", "black")
+    color6: ("black", "black")
+    color7: ("black", "black")
+    color8: ("black", "black")
+    color9: ("black", "black")
+    comment: ''
+    factor1: '1'
+    factor10: '1'
+    factor2: '1'
+    factor3: '1'
+    factor4: '1'
+    factor5: '1'
+    factor6: '1'
+    factor7: '1'
+    factor8: '1'
+    factor9: '1'
+    graph_type: qtgui.NUM_GRAPH_NONE
+    gui_hint: 3,0,1,1
+    label1: '"Beam ID"'
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    max: '1'
+    min: '-1'
+    name: '"TX codebook sweeping"'
+    nconnections: '1'
+    type: float
+    unit1: ''
+    unit10: ''
+    unit2: ''
+    unit3: ''
+    unit4: ''
+    unit5: ''
+    unit6: ''
+    unit7: ''
+    unit8: ''
+    unit9: ''
+    update_time: '0.10'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1120, 172.0]
     rotation: 0
     state: enabled
-- name: qtgui_time_sink_x_1
+- name: qtgui_time_sink_x_0
   id: qtgui_time_sink_x
   parameters:
     affinity: ''
@@ -570,105 +679,8 @@ blocks:
     comment: ''
     ctrlpanel: 'False'
     entags: 'True'
-    grid: 'True'
-    gui_hint: 6, 0, 2, 5
-    label1: Signal 1
-    label10: Signal 10
-    label2: Signal 2
-    label3: Signal 3
-    label4: Signal 4
-    label5: Signal 5
-    label6: Signal 6
-    label7: Signal 7
-    label8: Signal 8
-    label9: Signal 9
-    legend: 'True'
-    marker1: '-1'
-    marker10: '-1'
-    marker2: '-1'
-    marker3: '-1'
-    marker4: '-1'
-    marker5: '-1'
-    marker6: '-1'
-    marker7: '-1'
-    marker8: '-1'
-    marker9: '-1'
-    name: '"RX Correlation"'
-    nconnections: '1'
-    size: '16000'
-    srate: 1e6
-    stemplot: 'False'
-    style1: '1'
-    style10: '1'
-    style2: '1'
-    style3: '1'
-    style4: '1'
-    style5: '1'
-    style6: '1'
-    style7: '1'
-    style8: '1'
-    style9: '1'
-    tr_chan: '0'
-    tr_delay: '0'
-    tr_level: '0.0'
-    tr_mode: qtgui.TRIG_MODE_FREE
-    tr_slope: qtgui.TRIG_SLOPE_POS
-    tr_tag: '""'
-    type: complex
-    update_time: '0.04'
-    width1: '1'
-    width10: '1'
-    width2: '1'
-    width3: '1'
-    width4: '1'
-    width5: '1'
-    width6: '1'
-    width7: '1'
-    width8: '1'
-    width9: '1'
-    ylabel: Amplitude
-    ymax: '100'
-    ymin: '-1'
-    yunit: '""'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [936, 884.0]
-    rotation: 0
-    state: enabled
-- name: qtgui_time_sink_x_2
-  id: qtgui_time_sink_x
-  parameters:
-    affinity: ''
-    alias: ''
-    alpha1: '1.0'
-    alpha10: '1.0'
-    alpha2: '1.0'
-    alpha3: '1.0'
-    alpha4: '1.0'
-    alpha5: '1.0'
-    alpha6: '1.0'
-    alpha7: '1.0'
-    alpha8: '1.0'
-    alpha9: '1.0'
-    autoscale: 'False'
-    axislabels: 'True'
-    color1: blue
-    color10: dark blue
-    color2: red
-    color3: green
-    color4: black
-    color5: cyan
-    color6: magenta
-    color7: yellow
-    color8: dark red
-    color9: dark green
-    comment: ''
-    ctrlpanel: 'False'
-    entags: 'False'
     grid: 'False'
-    gui_hint: 4,0,2,5
+    gui_hint: 4,0,2,6
     label1: Signal 1
     label10: Signal 10
     label2: Signal 2
@@ -690,10 +702,10 @@ blocks:
     marker7: '-1'
     marker8: '-1'
     marker9: '-1'
-    name: '"RX Signal"'
+    name: '""'
     nconnections: '1'
-    size: '16000'
-    srate: 1e6
+    size: '1024'
+    srate: samp_rate
     stemplot: 'False'
     style1: '1'
     style10: '1'
@@ -712,7 +724,7 @@ blocks:
     tr_slope: qtgui.TRIG_SLOPE_POS
     tr_tag: '""'
     type: complex
-    update_time: '0.04'
+    update_time: '0.10'
     width1: '1'
     width10: '1'
     width2: '1'
@@ -724,49 +736,30 @@ blocks:
     width8: '1'
     width9: '1'
     ylabel: Amplitude
-    ymax: '3'
-    ymin: '0'
+    ymax: '1.5'
+    ymin: '-1.5'
     yunit: '""'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [936, 668.0]
-    rotation: 0
-    state: true
-- name: samp_rate
-  id: parameter
-  parameters:
-    alias: ''
-    comment: ''
-    hide: none
-    label: Sampling Rate
-    short_id: ''
-    type: intx
-    value: '2000000'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [176, 12.0]
+    coordinate: [768, 708.0]
     rotation: 0
     state: true
 
 connections:
+- [epy_block_0, '0', qtgui_number_sink_0, '0']
+- [iNETS_BeamManager_beamsteering_protocol_0, gui_out, epy_block_0, message_in]
 - [iNETS_BeamManager_beamsteering_protocol_0, out, iNETS_PacketizedLink_stop_wait_arq_0,
   beamforming_protocol_in]
 - [iNETS_PacketizedLink_stop_wait_arq_0, beamforming_protocol_out, iNETS_BeamManager_beamsteering_protocol_0,
   in]
-- [iNETS_PacketizedLink_stop_wait_arq_0, rx_phy_logger_out, iNETS_PacketizedLink_RX_PHY_logger_0,
-  rx_logger_in]
+- [iNETS_PacketizedLink_stop_wait_arq_0, phy_out, phy_transceiver_tx_spi_singleband_60g_0,
+  TX PHY in]
 - [iNETS_PacketizedLink_stop_wait_arq_0, udp_socket_out, network_socket_pdu_0, pdus]
 - [network_socket_pdu_0, pdus, iNETS_PacketizedLink_stop_wait_arq_0, udp_socket_in]
-- [phy_transceiver_rx_spi_60g_0, '0', qtgui_time_sink_x_2, '0']
-- [phy_transceiver_rx_spi_60g_0, '1', qtgui_const_sink_x_0, '0']
-- [phy_transceiver_rx_spi_60g_0, '2', qtgui_time_sink_x_1, '0']
-- [phy_transceiver_rx_spi_60g_0, RX PHY out, iNETS_PacketizedLink_stop_wait_arq_0,
-  phy_in]
-- [phy_transceiver_rx_spi_60g_0, SNR out, iNETS_PacketizedLink_stop_wait_arq_0, snr_in]
+- [phy_transceiver_tx_spi_singleband_60g_0, '0', qtgui_time_sink_x_0, '0']
+- [phy_transceiver_tx_spi_singleband_60g_0, '1', qtgui_const_sink_x_0, '0']
 
 metadata:
   file_format: 1

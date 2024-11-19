@@ -12,6 +12,8 @@ import numpy
 from gnuradio import gr
 import threading
 import pmt
+import datetime
+import time
 
 # libraries from EVK drivers
 import memory
@@ -64,7 +66,7 @@ class evk_set_beams_tt_RX(gr.basic_block):
         self.cur_beam_idx_changed = True  # used to trigger a tag each time the angle is changed
         self.rx_bfrf_gain = 0x11
         self.sps = sps  # samples per symbol
-        self.run_no = 0
+        self.run_no = -1 # minimum is 0
 
         self.beam_id_key = "rx_beam_id"
         
@@ -133,6 +135,31 @@ class evk_set_beams_tt_RX(gr.basic_block):
         """
         Iterate through all beams and wait time_per_angle between iteration steps.
         """
+        if self.run_no == -1:
+            # This is going to be the first run of the program. Set the program at the beginning of the second next minute.
+            current_time = datetime.datetime.now()
+            hour = current_time.hour
+            minute = current_time.minute
+            second = current_time.second
+            start_hour = (hour + ((minute + 2) // 60)) % 24
+            start_minute = (minute + 2) % 60
+            print('Current time is: ', '{:02d}'.format(hour), ':', '{:02d}'.format(minute), ':', '{:02d}'.format(second))
+            print('Starting time is: ', '{:02d}'.format(start_hour), ':', '{:02d}'.format(start_minute), ':', '00')
+            #print('Press any key to start directly...')
+            #input_thread = threading.Thread(target=input_thread_func)
+            #input_thread.start()
+            while True:
+                current_time = datetime.datetime.now()
+                if current_time.hour == start_hour and current_time.minute == start_minute:
+                    print('Time to start the measurement!')
+                    self.run_no = 0
+                    break
+                    
+                #if input_thread.is_alive() and input_thread.is_alive():
+                #    print('Starting the measurement due to user input!')
+                #    break
+                time.sleep(0.001)
+        
         if self.beamID == 100:
             # increase idx (make it wrap around to 0 if all the indices have already been iterated over)
             self.cur_beam_idx = (self.cur_beam_idx + 1) % len(self.beam_indices)

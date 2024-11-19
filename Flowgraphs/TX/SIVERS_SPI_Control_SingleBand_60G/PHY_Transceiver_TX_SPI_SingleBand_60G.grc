@@ -5,13 +5,13 @@ options:
     category: '[iNETS_PacketizedLink]'
     cmake_opt: ''
     comment: ''
-    copyright: inets RWTH
+    copyright: inets - RWTH
     description: ''
     gen_cmake: 'On'
     gen_linking: dynamic
     generate_options: hb
     hier_block_src_path: '.:'
-    id: phy_transceiver_tx_dualband_spi
+    id: phy_transceiver_tx_spi_singleband_60g
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -22,7 +22,7 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: Tranceiver PHY Level - TX Dual Band SPI
+    title: Tranceiver PHY Level - TX SPI Single Band 60G
     window_size: (1000,1000)
   states:
     bus_sink: false
@@ -90,7 +90,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1408, 12.0]
+    coordinate: [1240, 12.0]
     rotation: 0
     state: true
 - name: TX_SC_PHY_1
@@ -130,24 +130,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1104, 12.0]
-    rotation: 0
-    state: true
-- name: bb_freq_28
-  id: parameter
-  parameters:
-    alias: ''
-    comment: ''
-    hide: none
-    label: Carrier Frequency (28G)
-    short_id: ''
-    type: ''
-    value: 25e6
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [600, 12.0]
+    coordinate: [936, 12.0]
     rotation: 0
     state: true
 - name: bb_freq_60
@@ -164,7 +147,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [768, 12.0]
+    coordinate: [600, 12.0]
     rotation: 0
     state: true
 - name: detector_threshold
@@ -181,26 +164,24 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [936, 12.0]
+    coordinate: [768, 12.0]
     rotation: 0
     state: enabled
-- name: iNETS_SIVERSControl_evk_set_beams_TX_dual_SPI_0
-  id: iNETS_SIVERSControl_evk_set_beams_TX_dual_SPI
+- name: iNETS_SIVERSControl_evk_set_beams_TX_single_SPI_0
+  id: iNETS_SIVERSControl_evk_set_beams_TX_single_SPI
   parameters:
     SPI_CLK_DIV: '24'
-    SPI_CLK_PIN_28: '0'
-    SPI_CLK_PIN_60: '11'
-    SPI_CS_PIN_28: '3'
-    SPI_CS_PIN_60: '8'
+    SPI_CLK_PIN: '0'
+    SPI_CS_PIN: '3'
     SPI_GPIO_PORT: GPIO0
-    SPI_SDI_PIN_28: '2'
-    SPI_SDI_PIN_60: '9'
-    SPI_SDO_PIN_28: '1'
-    SPI_SDO_PIN_60: '10'
+    SPI_SDI_PIN: '2'
+    SPI_SDO_PIN: '1'
     affinity: ''
     alias: ''
+    antenna_array_model: EVK06002
     beam_tag_name: tx_beam_id
     comment: ''
+    fixed_beam_m: 'False'
     initial_beam_index: init_beam
     length_tag_name: packet_len
     maxoutbuf: '0'
@@ -210,7 +191,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [824, 292.0]
+    coordinate: [848, 300.0]
     rotation: 0
     state: true
 - name: import_0
@@ -356,7 +337,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1264, 12.0]
+    coordinate: [1096, 12.0]
     rotation: 0
     state: true
 - name: samp_rate
@@ -402,7 +383,7 @@ blocks:
     label: Subdevice Specification TX
     short_id: ''
     type: ''
-    value: '"A:0 B:1"'
+    value: '"A:0"'
   states:
     bus_sink: false
     bus_source: false
@@ -479,8 +460,8 @@ blocks:
     bw7: '0'
     bw8: '0'
     bw9: '0'
-    center_freq0: bb_freq_28
-    center_freq1: bb_freq_60
+    center_freq0: bb_freq_60
+    center_freq1: '0'
     center_freq10: '0'
     center_freq11: '0'
     center_freq12: '0'
@@ -654,7 +635,7 @@ blocks:
     lo_source9: internal
     maxoutbuf: '0'
     minoutbuf: '0'
-    nchan: '2'
+    nchan: '1'
     num_mboards: '1'
     otw: ''
     samp_rate: samp_rate
@@ -669,8 +650,8 @@ blocks:
     show_lo_controls: 'False'
     start_time: '-1.0'
     stream_args: ''
-    stream_chans: '[0,1]'
-    sync: pc_clock
+    stream_chans: '[]'
+    sync: pc_clock_next_pps
     time_source0: ''
     time_source1: ''
     time_source2: ''
@@ -707,10 +688,9 @@ blocks:
 
 connections:
 - [TX_SC_PHY_1, '0', pad_sink_2, '0']
-- [TX_SC_PHY_1, '1', iNETS_SIVERSControl_evk_set_beams_TX_dual_SPI_0, '0']
-- [iNETS_SIVERSControl_evk_set_beams_TX_dual_SPI_0, '0', pad_sink_1, '0']
-- [iNETS_SIVERSControl_evk_set_beams_TX_dual_SPI_0, '0', uhd_usrp_sink_0, '0']
-- [iNETS_SIVERSControl_evk_set_beams_TX_dual_SPI_0, '0', uhd_usrp_sink_0, '1']
+- [TX_SC_PHY_1, '1', iNETS_SIVERSControl_evk_set_beams_TX_single_SPI_0, '0']
+- [iNETS_SIVERSControl_evk_set_beams_TX_single_SPI_0, '0', pad_sink_1, '0']
+- [iNETS_SIVERSControl_evk_set_beams_TX_single_SPI_0, '0', uhd_usrp_sink_0, '0']
 - [pad_source_0, out, TX_SC_PHY_1, MAC frame in]
 
 metadata:

@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: Transceiver_Station_TX_dualband_SPI
+    id: Transceiver_Station_TX_SPI_singleband_28G
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -22,7 +22,7 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: Transceiver Station TX Dual Band SPI
+    title: Transceiver Station TX SPI Single Band 28G
     window_size: (1000,1000)
   states:
     bus_sink: false
@@ -33,7 +33,7 @@ options:
     state: enabled
 
 blocks:
-- name: bb_freq_28
+- name: bb_freq
   id: variable
   parameters:
     comment: ''
@@ -43,18 +43,6 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [848, 4.0]
-    rotation: 0
-    state: true
-- name: bb_freq_60
-  id: variable
-  parameters:
-    comment: ''
-    value: 100e6
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [944, 4.0]
     rotation: 0
     state: true
 - name: beam_id
@@ -90,7 +78,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1360, 668.0]
+    coordinate: [944, 524.0]
     rotation: 0
     state: true
 - name: detector_threshold
@@ -102,79 +90,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1040, 4.0]
-    rotation: 0
-    state: true
-- name: evk02001_init_tx_rf_gain
-  id: variable
-  parameters:
-    comment: ''
-    value: '0x44'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [488, 68.0]
-    rotation: 0
-    state: true
-- name: evk02001_serial
-  id: variable
-  parameters:
-    comment: replace this with the serial number of your EVK device
-    value: '"SNSP210157"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [656, 68.0]
-    rotation: 0
-    state: true
-- name: evk02001_trx_freq
-  id: variable
-  parameters:
-    comment: ''
-    value: 27.45e9
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [776, 68.0]
-    rotation: 0
-    state: true
-- name: evk06002_init_tx_rf_gain
-  id: variable
-  parameters:
-    comment: ''
-    value: '0xFF'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1136, 68.0]
-    rotation: 0
-    state: true
-- name: evk06002_serial
-  id: variable
-  parameters:
-    comment: replace this with the serial number of your EVK device
-    value: '"T582304971"'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1016, 68.0]
-    rotation: 0
-    state: true
-- name: evk06002_trx_freq
-  id: variable
-  parameters:
-    comment: ''
-    value: 58.32e9
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1304, 68.0]
+    coordinate: [928, 4.0]
     rotation: 0
     state: true
 - name: header_format
@@ -198,7 +114,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1496, 4.0]
+    coordinate: [280, 68.0]
     rotation: 0
     state: true
 - name: init_tx_beam
@@ -210,7 +126,19 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1392, 4.0]
+    coordinate: [176, 68.0]
+    rotation: 0
+    state: true
+- name: init_tx_rf_gain
+  id: variable
+  parameters:
+    comment: ''
+    value: '0x44'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [384, 68.0]
     rotation: 0
     state: true
 - name: max_mtu_size
@@ -229,12 +157,12 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '22'
+    value: '12'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1264, 4.0]
+    coordinate: [1152, 4.0]
     rotation: 0
     state: true
 - name: rand_pad
@@ -273,18 +201,6 @@ blocks:
     coordinate: [640, 4.0]
     rotation: 0
     state: true
-- name: spi_sleep_sec
-  id: variable
-  parameters:
-    comment: ''
-    value: '15'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [912, 68.0]
-    rotation: 0
-    state: true
 - name: sps
   id: variable
   parameters:
@@ -301,12 +217,12 @@ blocks:
   id: variable
   parameters:
     comment: ''
-    value: '21'
+    value: '11'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1176, 4.0]
+    coordinate: [1064, 4.0]
     rotation: 0
     state: true
 - name: sweeping
@@ -336,7 +252,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1360, 508.0]
+    coordinate: [952, 668.0]
     rotation: 0
     state: true
 - name: usrp_tx_address
@@ -348,19 +264,19 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [176, 68.0]
+    coordinate: [640, 68.0]
     rotation: 0
     state: true
 - name: usrp_tx_subdev_spec
   id: variable
   parameters:
     comment: ''
-    value: '"A:0 B:1"'
+    value: '"A:0"'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [344, 68.0]
+    coordinate: [496, 68.0]
     rotation: 0
     state: true
 - name: epy_block_0
@@ -403,7 +319,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1352, 432.0]
+    coordinate: [856, 280.0]
     rotation: 0
     state: enabled
 - name: iNETS_BeamManager_beamsteering_protocol_0
@@ -411,7 +327,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    beam_interval: '0.065'
+    beam_interval: '0.035'
     beamsteering_algorithm: '2'
     comment: ''
     custom_beambook_suffix: '"_iNETS"'
@@ -435,7 +351,7 @@ blocks:
     station_type: '0'
     sweeping: 'True'
     timeout_PLS: '0.2'
-    timeout_PLS_timer_based: '0.035'
+    timeout_PLS_timer_based: '0.1'
     timeout_PLS_timer_based_receive_SSW_frames: '0.065'
     timeout_RSSI_value_interval: '1.2'
     timeout_SLS: '0.2'
@@ -450,30 +366,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [808, 140.0]
+    coordinate: [352, 140.0]
     rotation: 0
     state: true
-- name: iNETS_PacketizedLink_RX_PHY_logger_0
-  id: iNETS_PacketizedLink_RX_PHY_logger
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    log_file_parent_dir: /home/inets/Workspace/GNURadio_logs/TX_USB/RX_PHY_Logger_events/
-    log_per_sector: 'False'
-    log_per_sector_parent_dir: /home/inets/Workspace/GNURadio_logs/TX_USB/RX_PHY_Logger_perposition/
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    mode: defined
-    simulation: 'True'
-    station_code: sta_code
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [248, 732.0]
-    rotation: 180
-    state: disabled
 - name: iNETS_PacketizedLink_stop_wait_arq_0
   id: iNETS_PacketizedLink_stop_wait_arq
   parameters:
@@ -482,7 +377,7 @@ blocks:
     alias: ''
     comment: ''
     conf_parent_dir: /home/inets/Workspace/GNURadio_logs/TX_USB/Stop_Wait_ARQ/
-    initial_TX_RF_gain: evk02001_init_tx_rf_gain
+    initial_TX_RF_gain: init_tx_rf_gain
     initial_rx_beam_index: init_rx_beam
     initial_tx_beam_index: init_tx_beam
     max_mtu_size: max_mtu_size
@@ -499,60 +394,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [792, 476.0]
-    rotation: 180
-    state: true
-- name: iNETS_SIVERSControl_evk02001_init_tx_0
-  id: iNETS_SIVERSControl_evk02001_init_tx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    custom_beambook_suffix: '"_iNETS"'
-    do_lo_leakage_cal: 'False'
-    evkplatform_type: MB1
-    initial_RX_RF_gain: '238'
-    initial_RX_vga_1_2_gain: '115'
-    initial_TX_BF_gain: '153'
-    initial_TX_RF_gain: evk02001_init_tx_rf_gain
-    initial_rx_beam_index: init_rx_beam
-    initial_tx_beam_index: init_tx_beam
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    sleep_amount: spi_sleep_sec
-    trx_frequency: evk02001_trx_freq
-    unit_name: evk02001_serial
-    version_num: '202111231800'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [240, 156.0]
-    rotation: 180
-    state: enabled
-- name: iNETS_SIVERSControl_evk06002_init_tx_0
-  id: iNETS_SIVERSControl_evk06002_init_tx
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    custom_beambook_suffix: '"_iNETS"'
-    do_lo_leakage_cal: 'False'
-    evkplatform_type: MB1
-    initial_RX_RF_gain: '238'
-    initial_RX_vga_1_2_gain: '115'
-    initial_TX_RF_gain: evk06002_init_tx_rf_gain
-    initial_tx_beam_index: init_tx_beam + 21
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    sleep_amount: spi_sleep_sec
-    trx_frequency: evk06002_trx_freq
-    unit_name: evk06002_serial
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [232, 436.0]
+    coordinate: [344, 468.0]
     rotation: 180
     state: true
 - name: import_0
@@ -573,7 +415,7 @@ blocks:
   parameters:
     alias: ''
     comment: ''
-    imports: from gnuradio import iNETS_PHYHeader
+    imports: from gnuradio import digital
   states:
     bus_sink: false
     bus_source: false
@@ -586,7 +428,7 @@ blocks:
   parameters:
     alias: ''
     comment: ''
-    imports: from gnuradio import digital
+    imports: from gnuradio import iNETS_PHYHeader
   states:
     bus_sink: false
     bus_source: false
@@ -624,17 +466,16 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [888, 380.0]
+    coordinate: [440, 372.0]
     rotation: 0
     state: true
-- name: phy_transceiver_tx_dualband_spi_0
-  id: phy_transceiver_tx_dualband_spi
+- name: phy_transceiver_tx_spi_singleband_28g_0
+  id: phy_transceiver_tx_spi_singleband_28g
   parameters:
     affinity: ''
     alias: ''
     baseband_derotation_volatility: '0.8'
-    bb_freq_28: bb_freq_28
-    bb_freq_60: bb_freq_60
+    bb_freq_60: 100e6
     comment: ''
     detector_threshold: detector_threshold
     init_beam: init_tx_beam
@@ -650,7 +491,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [792, 724.0]
+    coordinate: [320, 716.0]
     rotation: 0
     state: true
 - name: qtgui_const_sink_x_0
@@ -742,28 +583,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1192, 820.0]
+    coordinate: [744, 812.0]
     rotation: 0
     state: true
-- name: qtgui_graphicitem_0
-  id: qtgui_graphicitem
-  parameters:
-    affinity: ''
-    alias: ''
-    comment: ''
-    file: /home/inets/Workspace/beam_plots/beamId_1.png
-    fixedsize: 'False'
-    gui_hint: 0,2,4,1
-    height: '0'
-    scaleImage: 'True'
-    width: '0'
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1696, 568.0]
-    rotation: 0
-    state: disabled
 - name: qtgui_number_sink_0
   id: qtgui_number_sink
   parameters:
@@ -824,7 +646,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1632, 168.0]
+    coordinate: [1120, 172.0]
     rotation: 0
     state: enabled
 - name: qtgui_time_sink_x_0
@@ -921,30 +743,23 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1184, 712.0]
+    coordinate: [736, 700.0]
     rotation: 0
     state: true
 
 connections:
 - [epy_block_0, '0', qtgui_number_sink_0, '0']
-- [epy_block_0, image_portName, qtgui_graphicitem_0, filename]
 - [iNETS_BeamManager_beamsteering_protocol_0, gui_out, epy_block_0, message_in]
 - [iNETS_BeamManager_beamsteering_protocol_0, out, iNETS_PacketizedLink_stop_wait_arq_0,
   beamforming_protocol_in]
-- [iNETS_PacketizedLink_stop_wait_arq_0, antenna_array_control_out, iNETS_SIVERSControl_evk02001_init_tx_0,
-  MAC_control_message_in]
-- [iNETS_PacketizedLink_stop_wait_arq_0, antenna_array_control_out, iNETS_SIVERSControl_evk06002_init_tx_0,
-  MAC_control_message_in]
 - [iNETS_PacketizedLink_stop_wait_arq_0, beamforming_protocol_out, iNETS_BeamManager_beamsteering_protocol_0,
   in]
-- [iNETS_PacketizedLink_stop_wait_arq_0, phy_out, phy_transceiver_tx_dualband_spi_0,
+- [iNETS_PacketizedLink_stop_wait_arq_0, phy_out, phy_transceiver_tx_spi_singleband_28g_0,
   TX PHY in]
-- [iNETS_PacketizedLink_stop_wait_arq_0, rx_phy_logger_out, iNETS_PacketizedLink_RX_PHY_logger_0,
-  rx_logger_in]
 - [iNETS_PacketizedLink_stop_wait_arq_0, udp_socket_out, network_socket_pdu_0, pdus]
 - [network_socket_pdu_0, pdus, iNETS_PacketizedLink_stop_wait_arq_0, udp_socket_in]
-- [phy_transceiver_tx_dualband_spi_0, '0', qtgui_time_sink_x_0, '0']
-- [phy_transceiver_tx_dualband_spi_0, '1', qtgui_const_sink_x_0, '0']
+- [phy_transceiver_tx_spi_singleband_28g_0, '0', qtgui_time_sink_x_0, '0']
+- [phy_transceiver_tx_spi_singleband_28g_0, '1', qtgui_const_sink_x_0, '0']
 
 metadata:
   file_format: 1
